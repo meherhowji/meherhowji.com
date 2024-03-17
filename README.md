@@ -43,5 +43,7 @@
 
 ### Migration Status
 
+Migrating my existing meherhowji.com NextJS v13 to v14. Also, focus is on reducing dependencies, adding typescript, and building online course modules and user authentication.
+
 - root level files copied
 - next-config and next-seo at root level needs to be compared and merged
