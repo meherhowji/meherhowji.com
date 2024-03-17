@@ -1,0 +1,70 @@
+@import "/node_modules/bulma/sass/utilities/initial-variables.scss";
+
+// Variables for light theme
+:root {
+	// generic
+	--max-width: 1234px;
+
+	// colors and stuff
+  --background: rgb(250, 250, 255);
+  --footer-background-color: #07071e;
+  --landing-title-link-border-color: #fff3;
+  --navbar-background-color: #fff0;
+  --navbar-item-color: #000000b3;
+  --navbar-item-hover-background-color: #fff0;
+  --navbar-item-hover-color: #000000;
+  --theme-switch-menu-color: #444444;
+  --title-hero-text-gradient: #000814;
+  --landing-title-link-border-color: #0003;
+
+  // colors
+  --primary: #000814;
+  --secondary: #001d3d;
+  // inverts
+  --primary-invert: #fff;
+  --secondary-invert: #f8f8f8;
+  --tertiary-invert: #f2f2f2;
+  // fixed
+  --primary-dark: #fff;
+}
+
+// Variables for dark theme
+[data-theme="dark"] {
+  --background: #121019;
+  --footer-background-color: #07071e;
+  --landing-title-link-border-color: #fff3;
+  --navbar-background-color: #0000;
+  --navbar-item-color: #ffffffb3;
+  --navbar-item-hover-background-color: #0000;
+  --navbar-item-hover-color: #ffffff;
+  --theme-switch-menu-color: #fafafa;
+  --title-hero-text-gradient: linear-gradient(69deg, #73c3e2 0.09%, #b9c0a5 34.99%, #f0c79f 67.28%, #f7f7f7 93.84%);
+
+  // colors
+  --primary: #ffffff;
+  --secondary: #f8f8f8;
+  // inverts
+  --primary-invert: #000814;
+  --secondary-invert: #001d3d;
+  --tertiary-invert: #201c2e;
+  // fixed
+  --primary-dark: #fff;
+}
+
+// OVERRIDES -- Bulma Variables
+// Layout
+$container-max-width: $widescreen;
+// General Theme
+$body-color: var(--primary);
+$body-background-color: var(--background);
+$family-sans-serif: unset;
+// Navigation
+$navbar-breakpoint: $tablet;
+$navbar-background-color: var(--navbar-background-color);
+$navbar-item-color: var(--navbar-item-color);
+$navbar-item-hover-background-color: var(--navbar-item-hover-background-color);
+$navbar-item-hover-color: var(--navbar-item-hover-color);
+$navbar-height: 0.25rem;
+// Footer Variables
+$footer-background-color: var(--foooter-background-color);
+$footer-padding: 4rem 1.5rem;

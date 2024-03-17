@@ -1,0 +1,18 @@
+<!-- https://codepen.io/NickNoordijk/pen/VLvxLE -->
+<!-- https://codepen.io/ISOgenesis/pen/zxEXPg -->
+<svg width="83" height="83"
+	xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="a" x1="50%" y1="0%" x2="50%" y2="100%">
+			<stop offset="0%" stop-color="#7A5FFF">
+				<animate attributeName="stop-color" values="#7A5FFF; #01FF89; #7A5FFF" dur="3s" repeatCount="indefinite"/>
+			</stop>
+			<stop offset="100%" stop-color="#01FF89">
+				<animate attributeName="stop-color" values="#01FF89; #7A5FFF; #01FF89" dur="3s" repeatCount="indefinite"/>
+			</stop>
+		</linearGradient>
+	</defs>
+	<g>
+  	<path id="svg_1" fill="url('#a')" d="m41.5,0c-22.92,0 -41.5,18.58 -41.5,41.5s18.58,41.5 41.5,41.5s41.5,-18.58 41.5,-41.5s-18.58,-41.5 -41.5,-41.5zm-27.115,52.865l33.24,0a1,1 0 0 0 0.865,-1.502l-5.661,-9.75l5.087,-7.965l15.788,27.176l-44.402,0l-4.917,-7.959zm34.436,-21.64a1.002,1.002 0 0 0 -0.844,-0.498a0.971,0.971 0 0 0 -0.863,0.462l-6.004,9.4l-9.576,0l15.712,-27.379l22.65,38.672l-4.468,7.928l-16.607,-28.585zm-19.88,9.866a1,1 0 0 0 0.866,1.498l11.275,0l4.806,8.276l-31.535,0l22.844,-38.648l8.313,0l-16.57,28.873l0.001,0.001z"/>
+	</g>
+</svg>

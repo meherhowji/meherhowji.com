@@ -1,0 +1,107 @@
+@import "/node_modules/bulma/sass/utilities/mixins.scss";
+
+$menuItemsGap: 14px;
+
+.navbar {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 60px;
+  max-width: var(--max-width);
+  justify-content: space-between;
+  margin: 0 auto;
+  background-color: var(--background);
+
+  .brandLogo {
+    width: 42px;
+    height: 42px;
+    margin: auto;
+    max-height: initial !important;
+  }
+
+  .navbarBrand {
+    grid-column-start: 1;
+  }
+
+  .navbarBurger {
+    margin-left: auto;
+    height: initial;
+    width: 2rem;
+    user-select: none;
+  }
+
+  .alwaysLight {
+    a {
+      // no theme needed as it is a fixed color for footer
+      color: rgba(255, 255, 255, 0.7) !important;
+
+      &:hover {
+        background: unset !important;
+        transform: unset !important;
+      }
+    }
+  }
+
+  .navbarMenuList {
+    grid-column-start: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .menuSep,
+    .themeSwitchBtn {
+      margin: 0 $menuItemsGap;
+    }
+
+    & > a {
+      display: flex;
+      text-decoration: none;
+      align-items: center;
+
+      button {
+        display: flex;
+        background: none;
+        border: medium;
+        border-radius: 14px;
+        padding: 10px 20px;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        background-blend-mode: overlay;
+        font-size: 13px;
+        justify-content: space-between;
+        align-items: center;
+
+        &:hover {
+          background: #fff3;
+          box-shadow: #1f2f4740 0px 20px 40px, #0000001a 0px 1px 5px, #fff6 0px 0px 0px 0.5px inset;
+        }
+
+        span {
+          margin-left: 10px;
+        }
+      }
+
+      & + a {
+        margin-left: $menuItemsGap;
+      }
+    }
+
+    .themeMode {
+      &:hover {
+        background: none !important;
+        box-shadow: none !important;
+        transform: translateY(0) !important;
+      }
+    }
+  }
+
+  .accessibleHiddenText {
+    width: 0;
+    height: 0;
+    font-size: 0 !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

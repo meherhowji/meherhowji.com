@@ -1,0 +1,20 @@
+// https://github.com/jgthms/bulma/issues/1708
+.token.number,
+.token.tag {
+  all: unset;
+  display: inline;
+}
+
+code {
+  background-color: #0e0e1f;
+  color: rgb(255, 207, 116);
+  font-size: 0.875em;
+  font-weight: normal;
+  // padding: 0.25em 0.5em 0.25em;
+  padding: unset; // the inline code blocks has weird spacing due to above
+  border-radius: 3px;
+}
+
+.container {
+  transition: max-width 500ms var(--ease-out-quad);
+}
