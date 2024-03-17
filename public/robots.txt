@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://meherhowji.com
+
+# Sitemaps
+Sitemap: https://meherhowji.com/sitemap.xml

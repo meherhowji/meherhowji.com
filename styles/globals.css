@@ -1,0 +1,33 @@
+@import "./normalise.css";
+
+:root {
+  cursor: default;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::selection {
+  -webkit-text-fill-color: #fff;
+  color: #fff;
+  background: rgba(0, 116, 255, 0.3);
+}
+
+html {
+  min-height: 100%;
+  height: 100%;
+	background-color: #000;
+}
+
+body {
+  background-repeat: no-repeat;
+	background-color: #000;
+}

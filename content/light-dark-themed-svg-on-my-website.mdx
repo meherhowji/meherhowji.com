@@ -1,0 +1,42 @@
+---
+title: How I Added Light & Dark Theme SVGs on my Website
+excerpt: As my website uses light and dark themes it was important for the icons and other SVGs that I use to support it.
+publishedTime: 2023/4/24
+modifiedTime: 2023/5/16
+coverImage: ""
+coverCredit: ""
+author: Meher Howji
+tags:
+  - blog
+draft: "false"
+publishTo: meherhowji.com
+---
+
+There were many options that I tried, I think one with the `currentColor` option but the one that worked seamlessly was this little snippet, you place it right after the SVG tag and it just works.
+
+I also use [Next-Themes](https://www.npmjs.com/package/next-themes) that fully supports dark mode, including system preference with prefers-color-scheme and also immediately syncs this between tabs.
+
+In a gist, the `prefers-color-scheme` is a CSS media feature used to detect the user's preferred color scheme or theme set in their operating system or device settings. Also, you can read more about it in [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
+
+```html
+<svg width="351" height="348" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1">
+  <style>
+    svg {
+      fill: #232323;
+      stroke: #444;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        fill: #999888;
+        stroke: #fafafa;
+      }
+    }
+  </style>
+  <g>
+    <title>Layer 1</title>
+    <g id="svg_440">
+      <path>.....</path>
+    </g>
+  </g>
+</svg>
+```
