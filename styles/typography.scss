@@ -1,0 +1,170 @@
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary);
+}
+
+h1 {
+  font-size: 3rem !important;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+/* Blockquote */
+blockquote {
+  transition: background 0.25s var(--ease-in-out-quad), color 0.25s var(--ease-in-out-quad);
+  // color: #fff;
+  font-style: italic;
+  margin: 50px auto 50px;
+}
+
+blockquote p {
+  max-width: 880px !important;
+  padding-right: 100px;
+  padding-bottom: 0px;
+  width: 100%;
+  margin: 0px auto;
+  font-size: 2rem !important;
+  line-height: 1.32 !important;
+  font-weight: 700;
+}
+
+/* Strong */
+strong {
+  // color: white;
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+  counter-reset: list;
+  color: var(--theme-ui-colors-articleText, #fff);
+  position: relative;
+  padding: 15px 0 30px 30px;
+  transition: color 0.25s var(--ease-in-out-quad);
+  margin: 0 auto;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 680px;
+}
+
+li {
+  position: relative;
+  padding-bottom: 15px;
+}
+
+li:before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 10px;
+  height: 8px;
+  width: 8px;
+  background: var(--theme-ui-colors-articleText, #fff);
+}
+
+ol {
+  list-style: decimal;
+}
+
+ol li:before {
+  background: none;
+}
+
+/* Links */
+a {
+  font-style: normal;
+  font-weight: bold;
+  line-height: 20px;
+  // color: #ffffffb3;
+  margin: 0px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  // color: #ffffffb3;
+}
+
+/* Horizontal Rule */
+hr {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 50px auto 40px;
+  border: 0;
+  height: 14.36px;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='15' viewBox='0 0 10 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.567383' y='14.1777' width='16' height='1' transform='rotate(-60 0.567383 14.1777)' fill='%232D2E33'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  box-sizing: border-box;
+  background-position: center;
+}
+
+/* Tables */
+table {
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  // color: #fff;
+  margin: auto;
+  padding: auto;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+thead {
+  // border-bottom: 2px #fff5 solid;
+}
+
+th {
+  // color: #61AFEF !important;
+  font-weight: bold;
+}
+
+td,
+th {
+  padding: 10px 20px;
+}
+
+tbody tr {
+  // border-bottom: 1px #fff5 solid;
+}
+
+td {
+  text-align: center;
+}
+
+caption {
+  padding: 10px;
+  // color: #fff;
+}

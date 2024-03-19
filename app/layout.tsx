@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      // -1, Google chooses the length that it believes is effective to help users discover your content
-      "max-video-preview": -1,
       "max-image-preview": "large",
+      // -1, google chooses the length that it believes is effective to help users discover your content
+      "max-video-preview": -1,
       "max-snippet": -1,
     },
   },

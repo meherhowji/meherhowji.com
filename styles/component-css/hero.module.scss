@@ -1,0 +1,128 @@
+@import '/node_modules/bulma/sass/utilities/mixins.sass';
+// @import '@/styles/mixins.scss';
+
+.hero {
+  .heroBody {
+    position: relative;
+    transition: padding 500ms var(--ease-out-quad);
+
+    @include fullhd {
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+    }
+
+    @include widescreen-only {
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+    }
+
+    @include desktop-only {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    @include tablet-only {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    @include mobile {
+      padding-top: 4rem;
+    }
+
+    .link {
+      color: var(--secondary);
+      cursor: pointer;
+      border-bottom: 1px var(--landing-title-link-border-color) solid;
+      text-decoration: none;
+      font-weight: normal;
+    }
+
+    .heroTitle {
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+
+      span {
+        font-size: 3rem;
+        display: inline-block;
+        background: var(--title-hero-text-gradient);
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+      }
+
+      @include mobile {
+        text-align: center !important;
+      }
+    }
+
+    .heroSubTitle {
+      color: var(--secondary);
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      margin-top: 15px;
+
+      @include mobile {
+        font-size: 1.1rem !important;
+        text-align: center !important;
+      }
+    }
+
+    .heroSubTitleText {
+      color: var(--secondary);
+      font-weight: 500;
+      font-size: 1rem !important;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      margin-top: 15px;
+    }
+
+    .inlineNewsletterSubscribe {
+      display: inline;
+      margin: 0 0 0 10px;
+
+      input {
+        padding: 2px 10px 5px 10px;
+        font-size: 0.7rem;
+        height: 24px;
+      }
+    }
+
+    h4 {
+      margin-top: 15px;
+      font-size: 0.8rem;
+      color: var(--secondary);
+    }
+
+    .spaceFloat {
+      img {
+        width: 100%;
+        border-radius: 15px;
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.scrollIndicator {
+  position: absolute !important;
+  margin-top: 60px !important;
+  height: 120px;
+}
