@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import DP from "@/public/assets/components/meher-dp.jpg";
+import DP from "@/public/assets/brand/meher-dp.jpg";
 import styles from "@/styles/component-css/hero.module.scss";
 
 interface HeroProps {

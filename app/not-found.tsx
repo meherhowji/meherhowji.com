@@ -8,7 +8,10 @@ export default function Custom404() {
       {/* // TODO: add top posts and links for the user to navigate across */}
       <div className={styles.container}>
         <div>
-          <Image src={Error} width={200} height={200} alt={"An illustration of an astronaut lost in space"} />
+          {/* <Image src={Error} width={200} height={200} alt={"An illustration of an astronaut lost in space"} /> */}
+          <div>
+            <Error />
+          </div>
           <div className={styles.errorContent}>
             <h1 className={styles.errorTitle}>404</h1>
             <div className={styles.errorMessage}>

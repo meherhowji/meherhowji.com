@@ -1,9 +1,12 @@
+@charset "utf-8";
 @import "./normalise.css";
+@import "./theme/theme-variables.scss";
 
 :root {
   cursor: default;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 ::-webkit-scrollbar {
@@ -16,26 +19,27 @@
 }
 
 ::selection {
-  // -webkit-text-fill-color: #fff;
-  // color: #fff;
+  -webkit-text-fill-color: var(--primary-dark);
+  color: var(--primary-dark);
   // background: rgba(0, 116, 255, 0.3);
 }
 
 html {
   min-height: 100%;
   height: 100%;
-	// background-color: #000;
+  background-color: var(--background);
 }
 
 body {
   background-repeat: no-repeat;
-	// background-color: #000;
+  background-color: var(--background);
+  height: 100%;
 }
 
 // @import '~bulma/bulma.scss';
-@import './layout.scss';
-@import './theme/typography.scss';
-@import './overrides.scss';
+@import "./layout.scss";
+@import "./theme/typography.scss";
+@import "./overrides.scss";
 //
 // other files
 // @import "~bulma/sass/utilities/_all";

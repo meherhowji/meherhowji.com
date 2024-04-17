@@ -1,38 +1,40 @@
-import { useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import UdemyIcon from "@/public/assets/social-icons/udemy.svg";
-import YoutubeIcon from "@/public/assets/social-icons/youtube.svg";
-import LinkedinIcon from "@/public/assets/social-icons/linkedin.svg";
-import InstagramIcon from "@/public/assets/social-icons/instagram.svg";
 import styles from "@/styles/component-css/mobile-nav.module.scss";
 
 interface MobileNavProps {
-  toggleMenu: boolean;
+  showOnToggle: boolean;
 }
 
-const MobileNav: React.FC<MobileNavProps> = ({ toggleMenu }) => {
-  useEffect(() => {
-    document.querySelector(".navbar")?.classList.toggle(`${styles.slideDownAppear}`);
-  }, [toggleMenu]);
-
+const MobileNav: React.FC<MobileNavProps> = ({ showOnToggle }) => {
   return (
-    <nav className={`${styles.mobileNav} navbar`} role="navigation" aria-label="dropdown navigation">
+    <nav
+      className={`${styles.mobileNav} ${showOnToggle ? styles.slideDownOnMobile : styles.slideUpOnMobile}`}
+      role="navigation"
+      aria-label="dropdown navigation"
+    >
       <div className={`${styles.socialMedia}`}>
-        <Link href="https://www.udemy.com/user/meher-howji/">
-          <Image src={UdemyIcon} aria-hidden="true" width="20" height="20" alt="Udemy" />
+        <Link href="https://instagram.com/meherranjan">
+          <svg width="15px" height="15px" role="img" aria-label="instagram icon">
+            <use href="/assets/sprite.svg#instagram" />
+          </svg>
         </Link>
 
         <Link href="https://www.youtube.com/@meherhowji">
-          <Image src={YoutubeIcon} aria-hidden="true" width="20" height="20" alt="Youtube" />
+          <svg width="15px" height="15px" role="img" aria-label="youtube icon">
+            <use href="/assets/sprite.svg#youtube" />
+          </svg>
         </Link>
 
         <Link href="https://in.linkedin.com/in/meherranjan">
-          <Image src={LinkedinIcon} aria-hidden="true" width="20" height="20" alt="LinkedIn" />
+          <svg width="15px" height="15px" role="img" aria-label="linkedin icon">
+            <use href="/assets/sprite.svg#linkedin" />
+          </svg>
         </Link>
 
-        <Link href="https://instagram.com/meherranjan">
-          <Image src={InstagramIcon} aria-hidden="true" width="20" height="20" alt="Instagram" />
+        <Link href="https://www.udemy.com/user/meher-howji/">
+          <svg width="15px" height="15px" role="img" aria-label="youtube icon">
+            <use href="/assets/sprite.svg#udemy" />
+          </svg>
         </Link>
       </div>
       <hr />

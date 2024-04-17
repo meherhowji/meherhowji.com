@@ -1,6 +1,6 @@
-@import "/node_modules/bulma/sass/utilities/mixins.scss";
+@import "../mixins/media.scss";
 
-$menuItemsGap: 14px;
+$menuItemsGap: 20px;
 
 .navbar {
   display: grid;
@@ -13,6 +13,10 @@ $menuItemsGap: 14px;
   margin: 0 auto;
   background-color: var(--background);
 
+  @include mobile {
+    grid-template-columns: 100%;
+  }
+
   .brandLogo {
     width: 42px;
     height: 42px;
@@ -22,13 +26,26 @@ $menuItemsGap: 14px;
 
   .navbarBrand {
     grid-column-start: 1;
-  }
+    display: flex;
 
-  .navbarBurger {
-    margin-left: auto;
-    height: initial;
-    width: 2rem;
-    user-select: none;
+    a {
+      display: flex;
+    }
+
+    .mobileNavbarMenuIcon {
+      display: none;
+      margin-left: auto;
+      height: initial;
+      width: 2rem;
+      user-select: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      @include mobile {
+        display: flex;
+      }
+    }
   }
 
   .alwaysLight {
@@ -49,9 +66,8 @@ $menuItemsGap: 14px;
     justify-content: flex-end;
     align-items: center;
 
-    .menuSep,
-    .themeSwitchBtn {
-      margin: 0 $menuItemsGap;
+    @include mobile {
+      display: none;
     }
 
     & > a {
@@ -59,31 +75,56 @@ $menuItemsGap: 14px;
       text-decoration: none;
       align-items: center;
 
+      & + a {
+        margin-left: 15px;
+      }
+
+      .m0 {
+        margin: 0 !important;
+      }
+
+      .accessibleHiddenText {
+        width: 0;
+        height: 0;
+        font-size: 0 !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
       button {
         display: flex;
         background: none;
         border: medium;
         border-radius: 14px;
-        padding: 10px 20px;
+        padding: 10px $menuItemsGap;
         transition: 0.3s ease-in-out;
         cursor: pointer;
         background-blend-mode: overlay;
         font-size: 13px;
-        justify-content: space-between;
         align-items: center;
 
         &:hover {
-          background: #fff3;
-          box-shadow: #1f2f4740 0px 20px 40px, #0000001a 0px 1px 5px, #fff6 0px 0px 0px 0.5px inset;
+          background: rgba(255, 255, 255, 0.1) none repeat scroll 0% 0%;
+          // box-shadow: rgba(31, 47, 71, 0.25) 0px 20px 40px,
+          //   rgba(0, 0, 0, 0.1) 0px 1px 5px,
+          //   rgba(255, 255, 255, 0.4) 0px 0px 0px 0.5px inset;
+          transform: translateY(-1px);
         }
 
-        span {
-          margin-left: 10px;
-        }
+				span {
+					// currentcolor for svg comes from here
+					color: var(--primary);
+				}
       }
 
-      & + a {
-        margin-left: $menuItemsGap;
+      .icon,
+      img {
+        display: flex;
+        align-items: center;
+        width: 15px;
+        height: 15px;
+        margin-right: 12px;
       }
     }
 
@@ -94,14 +135,13 @@ $menuItemsGap: 14px;
         transform: translateY(0) !important;
       }
     }
-  }
 
-  .accessibleHiddenText {
-    width: 0;
-    height: 0;
-    font-size: 0 !important;
-    position: absolute;
-    left: 0;
-    top: 0;
+    .menuSep {
+      margin: 0 $menuItemsGap;
+    }
+
+    .themeBtn {
+      margin-left: 10px;
+    }
   }
 }

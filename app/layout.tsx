@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "@/styles/globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meherhowji.com"),
@@ -32,8 +33,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      {/* TODO: suppress cz ThemeProvider is a client component and layout isnt, check next-theme in future again */}
+      <body className={`${inter.className} bodyContainer`}>
+        <ThemeProvider themes={["light", "dark"]} enableSystem={true}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

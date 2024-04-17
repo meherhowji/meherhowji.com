@@ -1,0 +1,46 @@
+// Define mixin for mobile styles - based on Bulma
+@mixin extraSmallMobile {
+  @media only screen and (max-width: 575px) {
+    @content; // Styles within this block will apply on screens up to 575px wide
+  }
+}
+
+@mixin smallMobile {
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+    @content; // Styles within this block will apply on screens between 576px and 768px wide
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 768px) {
+    @content; // Styles within this block will apply on screens up to 768px wide
+  }
+}
+
+// Define mixin for tablet styles
+@mixin tablet {
+  @media only screen and (min-width: 769px) and (max-width: 1023px) {
+    @content; // Styles within this block will apply on tablets between 769px and 1023px wide
+  }
+}
+
+// Define mixin for desktop styles
+@mixin desktop {
+  @media only screen and (min-width: 1024px) and (max-width: 1215px) {
+    @content; // Styles within this block will apply on desktops between 1024px and 1215px wide
+  }
+}
+
+// Define mixin for widescreen styles
+@mixin widescreen {
+  @media only screen and (min-width: 1216px) and (max-width: 1407px) {
+    @content; // Styles within this block will apply on widescreen monitors between 1216px and 1407px wide
+  }
+}
+
+// Define mixin for fullHD styles
+@mixin fullHD {
+  @media only screen and (min-width: 1408px) {
+    @content; // Styles within this block will apply on screens 1408px and wider
+  }
+}
