@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useTheme } from "next-themes";
 import css from "@/styles/component-css/theme-switch.module.scss";
@@ -9,7 +10,6 @@ const ThemeSwitch: React.FC = () => {
     <label className={css.dayNight}>
       <input
         type="checkbox"
-        defaultChecked={theme === "dark" || systemTheme === "dark"}
         onClick={() => {
           if (theme === "system") {
             systemTheme === "light" ? setTheme("dark") : setTheme("light");

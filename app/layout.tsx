@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {/* TODO: suppress cz ThemeProvider is a client component and layout isnt, check next-theme in future again */}
       <body className={`${inter.className} bodyContainer`}>
-        <ThemeProvider themes={["light", "dark"]} enableSystem={true}>
+        <ThemeProvider themes={["light", "dark"]} defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>
