@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "@/styles/globals.scss";
 
-const inter = Inter({ subsets: ["latin"], weight: ["300", "400"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "900"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meherhowji.com"),

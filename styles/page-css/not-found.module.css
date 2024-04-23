@@ -1,4 +1,4 @@
-.container {
+.pageContainer {
   height: calc(100vh);
   text-align: center;
   display: flex;
@@ -6,24 +6,33 @@
   align-items: center;
   justify-content: center;
 
-  & .errorContent {
-    display: inline-block;
-    text-align: left;
+  .container {
+    display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+  }
 
-    & .errorTitle {
-      font-size: 2em !important;
-      display: inline-block;
-      margin: 0em 1.25em 0em 0em;
-      padding-right: 1.4375em;
-      vertical-align: top;
-      line-height: 3.0625em;
+  .lostAstronaut {
+    width: 200px;
+    height: 200px;
+  }
+
+  .errorContent {
+		margin-top: 20px;
+    display: flex;
+		align-items: center;
+
+    .errorTitle {
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 32px !important;
+      margin-right: 25px;
     }
 
-    & .errorMessage {
-      font-size: 0.875em;
+    .errorMessage {
+      font-size: 14px;
       font-weight: 400;
-      line-height: 3.0625em;
-      margin: 0em;
     }
   }
 }
