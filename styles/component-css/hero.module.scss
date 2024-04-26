@@ -1,34 +1,44 @@
-@import '/node_modules/bulma/sass/utilities/mixins.scss';
-// @import '@/styles/mixins.scss';
+@import "@/styles/mixins/mixins.scss";
+@import "@/styles/mixins/media.scss";
 
 .hero {
-  .heroBody {
-    position: relative;
-    transition: padding 500ms var(--ease-out-quad);
+  @include container;
 
-    @include fullhd {
-      padding-top: 10rem;
-      padding-bottom: 10rem;
-    }
+  display: grid;
+  position: relative;
+  transition: padding 500ms var(--ease-out-quad);
+  grid-template-columns: 55% auto;
 
-    @include widescreen-only {
-      padding-top: 10rem;
-      padding-bottom: 10rem;
-    }
+  @include fullhd {
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
 
-    @include desktop-only {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
+  @include widescreen-only {
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
 
-    @include tablet-only {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-    }
+  @include desktop-only {
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
 
-    @include mobile {
-      padding-top: 4rem;
-    }
+  @include tablet-only {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    grid-template-columns: 55% auto;
+  }
+
+  @include mobile {
+    padding-top: 60px;
+    grid-template-columns: 100%;
+  }
+
+  .heroContent {
+    padding-right: 45px;
+    display: flex;
+    align-items: center;
 
     .link {
       color: var(--secondary);
@@ -40,89 +50,111 @@
 
     .heroTitle {
       font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-
-      span {
-        font-size: 3rem;
-        display: inline-block;
-        background: var(--title-hero-text-gradient);
-        -webkit-text-fill-color: transparent;
-        -moz-text-fill-color: transparent;
-        -webkit-background-clip: text;
-        -moz-background-clip: text;
-        background-clip: text;
-      }
+      background: var(--title-hero-text-gradient);
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      user-select: none;
+      margin-top: 0;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
 
       @include mobile {
+        width: 100%;
+        font-size: 36px !important;
         text-align: center !important;
+      }
+
+      @include tablet-only {
+        font-size: 36px !important;
+      }
+
+      @include small-tablet-only {
+        font-size: 34px !important;
+      }
+
+      @include small-tablet-only {
+        font-size: 30px !important;
+      }
+
+      @include desktop-only {
+        font-size: 46px !important;
       }
     }
 
     .heroSubTitle {
       color: var(--secondary);
       font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: -0.01em;
-      margin-top: 15px;
+      letter-spacing: -1px;
+      font-size: 24px;
+      margin: 0;
 
       @include mobile {
         font-size: 1.1rem !important;
         text-align: center !important;
       }
+
+      @include tablet-only {
+        font-size: 24px !important;
+      }
+
+      @include small-tablet-only {
+        font-size: 20px !important;
+      }
+
+      @include smaller-tablet-only {
+        font-size: 18px !important;
+      }
+
+      @include desktop-only {
+        font-size: 30px !important;
+      }
     }
 
     .heroSubTitleText {
+      font-size: 15px;
+      line-height: 24px;
       color: var(--secondary);
-      font-weight: 500;
-      font-size: 1rem !important;
-      line-height: 1.6;
       letter-spacing: -0.01em;
-      margin-top: 15px;
-    }
+      margin-top: 35px;
 
-    .inlineNewsletterSubscribe {
-      display: inline;
-      margin: 0 0 0 10px;
+      p:last-child {
+        margin-bottom: 0;
+      }
 
-      input {
-        padding: 2px 10px 5px 10px;
-        font-size: 0.7rem;
-        height: 24px;
+      @include tablet-only {
+        margin-top: 20px;
+        font-size: 13px !important;
+        line-height: 18px;
+      }
+
+      @include small-tablet-only {
+        font-size: 13px !important;
+      }
+
+      @include smaller-tablet-only {
+        font-size: 11px !important;
+      }
+
+      @include desktop-only {
+        margin-top: 30px;
+        font-size: 14px !important;
+        line-height: 18px;
       }
     }
+  }
 
-    h4 {
-      margin-top: 15px;
-      font-size: 0.8rem;
-      color: var(--secondary);
+  .heroImage {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    img {
+      width: 90%;
+      height: auto;
+      border-radius: 8px;
     }
-
-    .spaceFloat {
-      img {
-        width: 100%;
-        border-radius: 15px;
-      }
-    }
   }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.scrollIndicator {
-  position: absolute !important;
-  margin-top: 60px !important;
-  height: 120px;
 }

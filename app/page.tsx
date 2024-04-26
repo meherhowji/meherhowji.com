@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
-// import Hero from "@/app/components/hero";
-// import { useInView } from "react-intersection-observer";
-// import { Subscribe, ArticlesPreview, Hero, Footer, Courses, Head, ViewCounter } from "@/components";
+import Hero from "@/app/components/hero";
 import DesktopNav from "@/app/components/desktop-nav";
 import MobileNav from "@/app/components/mobile-nav";
+
+// import { useInView } from "react-intersection-observer";
+// import { Subscribe, ArticlesPreview, Hero, Footer, Courses, Head, ViewCounter } from "@/components";
 // import { NextSeo } from "next-seo";
 // import { allPosts } from "contentlayer/generated";
 // import cn from "classnames";
@@ -32,12 +33,12 @@ export default function Home() {
     <div className="mainContainer">
       <MobileNav showOnToggle={toggleMobileMenu} />
       <main
-        className={`pageContainer ${toggleMobileMenu ? 'slideDownOnMobile showOnMobile' : ""}`}
+        className={`pageContainer ${toggleMobileMenu ? "slideDownOnMobile showOnMobile" : ""}`}
         {...handlers}
         style={{ height: "100vh" }}
       >
         <DesktopNav onMobileNavToggle={toggleMobileNav} onFooter={false} />
-        {/* <Hero courseInView={courseInView} /> */}
+        <Hero />
         {/* <Courses ref={ref} /> */}
         {/* <ArticlesPreview allPosts={allPosts.slice(0, 3)} /> */}
         {/* <Subscribe /> */}

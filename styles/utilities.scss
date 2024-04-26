@@ -1,70 +1,71 @@
-@import '@/styles/mixins.scss';
+@import "@/styles/mixins.scss";
+
+// TODO: clean up
 
 .rel {
-	position: relative;
+  position: relative;
 }
 
 .offset {
-	position: absolute;
-	top: 0;
-	transform: translateY(50%);
-	left: -50px;
-	color: red;
+  position: absolute;
+  top: 0;
+  transform: translateY(50%);
+  left: -50px;
+  color: red;
 }
 
 .anchor-heading {
-	.anchor-link {
-		position: absolute;
-		margin-left: -40px;
-		opacity: 0;
-		transition: opacity 0.6s var(--ease-in-out-quad);
-	}
+  .anchor-link {
+    position: absolute;
+    margin-left: -40px;
+    opacity: 0;
+    transition: opacity 0.6s var(--ease-in-out-quad);
+  }
 
-	&:hover .anchor-link {
-		opacity: 0.3;
-	}
+  &:hover .anchor-link {
+    opacity: 0.3;
+  }
 }
 
 a.anchor-markdown {
-	position: relative;
-	cursor: pointer;
-	transition: color 0.25s var(--ease-in-out-quad);
-	color: var(--theme-ui-colors-accent, #e9daac);
-	text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.25s var(--ease-in-out-quad);
+  color: var(--theme-ui-colors-accent, #e9daac);
+  text-decoration: none;
 
-	&:after {
-		content: '';
-		position: absolute;
-		width: 100%;
-		transform: scaleX(0);
-		height: 2px;
-		bottom: 0;
-		left: 0;
-		// background-color: #ffcf74;
-		transform-origin: bottom right;
-		transition: transform 0.4s ease-in-out;
-	}
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    // background-color: #ffcf74;
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-in-out;
+  }
 
-	&:hover:after {
-		transform: scaleX(1);
-		transform-origin: bottom left;
-	}
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 
-	&:hover {
-		// color: #ffcf74;
-	}
+  &:hover {
+    // color: #ffcf74;
+  }
 }
 
-
 .preTitle {
-	font-weight: 600;
-	text-transform: uppercase;
-	font-size: 0.9rem;
-	color: var(--secondary);
-	margin-bottom: 10px !important;
-	text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: 10px !important;
+  text-align: left;
 }
 
 .subTitle {
-	@include subtitle;
+  @include subtitle;
 }

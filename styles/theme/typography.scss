@@ -6,37 +6,38 @@ h4,
 h5,
 h6 {
   color: var(--primary);
+	display: block;
 }
 
 h1 {
-  font-size: 3rem !important;
+  font-size: 48px !important; /* 3rem converted to px assuming root font size is 16px */
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1.15;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 32px; /* 2rem converted to px assuming root font size is 16px */
   font-weight: 700;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 26px; /* 1.6rem converted to px assuming root font size is 16px */
   font-weight: 700;
 }
 
 h4 {
-  font-size: 1.2rem;
+  font-size: 20px; /* 1.2rem converted to px assuming root font size is 16px */
   font-weight: 700;
 }
 
 h5 {
-  font-size: 1rem;
+  font-size: 16px; /* 1rem converted to px assuming root font size is 16px */
   font-weight: 700;
 }
 
 h6 {
-  font-size: 0.8rem;
+  font-size: 13px; /* 0.8rem converted to px assuming root font size is 16px */
 }
 
 /* Blockquote */
@@ -53,7 +54,7 @@ blockquote p {
   padding-bottom: 0px;
   width: 100%;
   margin: 0px auto;
-  font-size: 2rem !important;
+  font-size: 32px !important; /* 2rem converted to px assuming root font size is 16px */
   line-height: 1.32 !important;
   font-weight: 700;
 }
@@ -73,7 +74,7 @@ ol {
   padding: 15px 0 30px 30px;
   transition: color 0.25s var(--ease-in-out-quad);
   margin: 0 auto;
-  font-size: 1rem;
+  font-size: 16px; /* 1rem converted to px assuming root font size is 16px */
   width: 100%;
   max-width: 680px;
 }
@@ -134,7 +135,7 @@ hr {
 /* Tables */
 table {
   letter-spacing: 1px;
-  font-size: 0.8rem;
+  font-size: 12.8px; /* 0.8rem converted to px assuming root font size is 16px */
   // color: #fff;
   margin: auto;
   padding: auto;

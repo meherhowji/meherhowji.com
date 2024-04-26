@@ -2,6 +2,8 @@
 
 $anim-duration: 560ms;
 
+// TODO: clean up
+
 .bodyContainer {
   background: var(--background);
   animation: unroundRound $anim-duration ease;

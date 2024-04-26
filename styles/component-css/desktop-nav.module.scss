@@ -1,16 +1,13 @@
 @import "../mixins/media.scss";
+@import '@/styles/mixins/mixins.scss';
 
 $menuItemsGap: 20px;
 
 .navbar {
+	@include container;
   display: grid;
   grid-template-columns: 30% 70%;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 60px;
-  max-width: var(--max-width);
   justify-content: space-between;
-  margin: 0 auto;
   background-color: var(--background);
 
   @include mobile {

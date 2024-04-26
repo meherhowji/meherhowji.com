@@ -28,7 +28,7 @@
 
 Migrating meherhowji.com from NextJS v13 to v14. Also, focus is on reducing dependencies, adding typescript, and course modules, user authentication and payment gateway.
 
-- currently we are getting the header to work with the theme switcher with mobile and ipad first approach
+- completed the navigation for desktop and mobile
 - clean up
   - typography/layout/globals.scss - commented colors which will incrementally update, otherwise cleanedup
   - utility.scss
