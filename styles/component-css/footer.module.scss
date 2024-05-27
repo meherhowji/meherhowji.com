@@ -1,0 +1,93 @@
+@import "@/styles/mixins/mixins.scss";
+
+.footer {
+  position: relative;
+  @include pagePadding;
+  padding-top: 200px;
+  padding-bottom: 50px;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+
+  .container {
+    @include container;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footerTitle {
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem !important;
+    line-height: 1.35;
+    letter-spacing: -0.04em;
+    text-align: right !important;
+  }
+
+  .flex {
+    display: flex;
+    margin-bottom: 25px;
+  }
+
+  .footerSubTitle {
+    user-select: none;
+
+    > p {
+      margin-bottom: 9px;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.7) !important;
+      font-size: 0.8rem;
+    }
+  }
+
+  .strong {
+    font-weight: 600;
+
+    a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+.socialbarContainer {
+  margin-left: 50px;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  margin-left: 50px;
+
+  a {
+    margin-left: 14px;
+    opacity: 0.5;
+    transition: opacity 0.4s var(--ease-out-quad);
+
+    &:hover {
+      opacity: 1;
+      transition: opacity 0.4s var(--ease-out-quad);
+    }
+  }
+}
+
+.waveWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  transform-origin: left top 0px;
+  clip-path: url("#wave");
+  background: linear-gradient(-25deg, rgb(33, 13, 84) 63%, rgb(22, 7, 61) 100%);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

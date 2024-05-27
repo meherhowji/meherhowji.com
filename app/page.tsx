@@ -4,6 +4,7 @@ import { useSwipeable } from "react-swipeable";
 import Hero from "@/app/components/hero";
 import DesktopNav from "@/app/components/desktop-nav";
 import MobileNav from "@/app/components/mobile-nav";
+import Footer from "@/app/components/footer";
 
 // import { useInView } from "react-intersection-observer";
 // import { Subscribe, ArticlesPreview, Hero, Footer, Courses, Head, ViewCounter } from "@/components";
@@ -44,9 +45,9 @@ export default function Home() {
         {/* <Subscribe /> */}
         {/* <Pricing /> */}
         {/* <Team /> */}
+        <Footer />
       </main>
-      {/* <Footer />
-      <ViewCounter slug={"landing-page"} trackView show={false} isPage /> */}
+      {/* <ViewCounter slug={"landing-page"} trackView show={false} isPage /> */}
     </div>
   );
 }

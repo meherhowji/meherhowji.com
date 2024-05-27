@@ -8,7 +8,6 @@ $menuItemsGap: 20px;
   display: grid;
   grid-template-columns: 30% 70%;
   justify-content: space-between;
-  background-color: var(--background);
 
   @include mobile {
     grid-template-columns: 100%;

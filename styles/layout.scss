@@ -1,4 +1,5 @@
-@import "./mixins/media.scss";
+@import "@/styles/mixins/media.scss";
+@import "@/styles/mixins/mixins.scss";
 
 $anim-duration: 560ms;
 
@@ -13,6 +14,7 @@ $anim-duration: 560ms;
   position: relative;
   transition: transform $anim-duration cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
   background: var(--background);
+	@include pagePadding;
 
   &:after {
     content: "";
