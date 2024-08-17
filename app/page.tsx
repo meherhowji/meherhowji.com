@@ -6,48 +6,34 @@ import DesktopNav from "@/app/components/desktop-nav";
 import MobileNav from "@/app/components/mobile-nav";
 import Footer from "@/app/components/footer";
 
-// import { useInView } from "react-intersection-observer";
-// import { Subscribe, ArticlesPreview, Hero, Footer, Courses, Head, ViewCounter } from "@/components";
-// import { NextSeo } from "next-seo";
-// import { allPosts } from "contentlayer/generated";
-// import cn from "classnames";
-// import sal from "sal.js";
-// import "sal.js/dist/sal.css";
-
 export default function Home() {
-  const [toggleMobileMenu, setToggleMenu] = useState(false);
-  const [compLoaded, setCompLoaded] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isComponentLoaded, setIsComponentLoaded] = useState(true);
 
+  // Toggles the state of the mobile navigation menu
   function toggleMobileNav() {
-    setToggleMenu(!toggleMobileMenu);
-    compLoaded && setCompLoaded(false);
-    // setTimeout(() => {
-    // document.querySelector('body').classList.toggle('overflowHidden')
-    // }, 500) // duration same as $anim-duration in layout.scss
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (isComponentLoaded) {
+      setIsComponentLoaded(false);
+    }
   }
 
-  const handlers = useSwipeable({
-    onSwipedUp: () => (toggleMobileMenu ? toggleMobileNav() : undefined),
+  const swipeHandlers = useSwipeable({
+    onSwipedUp: () => (isMobileMenuOpen ? toggleMobileNav() : null),
   });
 
   return (
     <div className="mainContainer">
-      <MobileNav showOnToggle={toggleMobileMenu} />
+      <MobileNav showOnToggle={isMobileMenuOpen} />
       <main
-        className={`pageContainer ${toggleMobileMenu ? "slideDownOnMobile showOnMobile" : ""}`}
-        {...handlers}
+        className={`pageContainer ${isMobileMenuOpen ? "slideDownOnMobile showOnMobile" : ""}`}
+        {...swipeHandlers}
         style={{ height: "100vh" }}
       >
         <DesktopNav onMobileNavToggle={toggleMobileNav} onFooter={false} />
         <Hero />
-        {/* <Courses ref={ref} /> */}
-        {/* <ArticlesPreview allPosts={allPosts.slice(0, 3)} /> */}
-        {/* <Subscribe /> */}
-        {/* <Pricing /> */}
-        {/* <Team /> */}
         <Footer />
       </main>
-      {/* <ViewCounter slug={"landing-page"} trackView show={false} isPage /> */}
     </div>
   );
 }

@@ -28,14 +28,19 @@
 
 Migrating meherhowji.com from NextJS v13 to v14. Also, focus is on reducing dependencies, adding typescript, and course modules, user authentication and payment gateway.
 
-- completed the navigation for desktop and mobile
+#### Todo
+
 - clean up
   - typography/layout/globals.scss - commented colors which will incrementally update, otherwise cleanedup
   - utility.scss
   - mixins.scss
   - heromodule.scss - cleaned up
-- root level files copied
 - next-config and next-seo at root level needs to be compared and merged
+
+#### Done
+
+- completed the navigation for desktop and mobile
+- root level files copied
 
 #### Later
 
