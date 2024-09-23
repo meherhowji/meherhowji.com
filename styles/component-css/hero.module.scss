@@ -1,5 +1,5 @@
-@import "@/styles/mixins/mixins.scss";
-@import "@/styles/mixins/media.scss";
+@import '@/styles/mixins/mixins.scss';
+@import '@/styles/mixins/media.scss';
 
 .hero {
   @include container;
@@ -10,23 +10,19 @@
   grid-template-columns: 55% auto;
 
   @include fullhd {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-block: 150px;
   }
 
   @include widescreen-only {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-block: 150px;
   }
 
   @include desktop-only {
-    padding-top: 150px;
-    padding-bottom: 150px;
+    padding-block: 150px;
   }
 
   @include tablet-only {
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-block: 80px;
     grid-template-columns: 55% auto;
   }
 
@@ -156,5 +152,14 @@
       height: auto;
       border-radius: 8px;
     }
+  }
+}
+
+.nonLandingScreen {
+  padding-block: 80px;
+
+  @include mobile {
+    padding-top: 60px;
+    grid-template-columns: 100%;
   }
 }

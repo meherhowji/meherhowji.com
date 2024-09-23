@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import Logo from "@/public/assets/brand/logo.svg";
-import DesktopNav from "@/app/components/desktop-nav";
-import useDimensions from "@/app/hooks/useDimensions";
-import simplifySvgPath from "@/app/hooks/simplifySvgPath";
+'use client';
 
-import css from "@/styles/component-css/footer.module.scss";
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Logo from '@/public/assets/brand/logo.svg';
+import DesktopNav from '@/app/components/desktop-nav';
+import useDimensions from '@/app/hooks/useDimensions';
+import simplifySvgPath from '@/app/hooks/simplifySvgPath';
+
+import css from '@/styles/component-css/footer.module.scss';
 
 interface FooterProps {
   showNewsletter?: boolean;
@@ -34,15 +36,25 @@ const Footer: React.FC<FooterProps> = ({ showNewsletter = true }) => {
         <div className={css.container}>
           <div className={css.footerSubTitle}>
             <div className={css.flex}>
-              <Image src="./assets/brand/logo.svg" alt="Meher+Howji logo" width="36" height="36" priority={true} />
+              <Image
+                src="./assets/brand/logo.svg"
+                alt="Meher+Howji logo"
+                width="36"
+                height="36"
+                priority={true}
+              />
               <SocialBar size={16} />
             </div>
             <div>
               <p className={css.siteTech}>
-                <span>Built with NextJS, Supabase & using CSS Grids & Flexbox. Learn </span>
+                <span>
+                  Built with NextJS, Supabase & using CSS Grids & Flexbox. Learn{' '}
+                </span>
                 <Link href="/how-i-built-my-website">how.</Link>
               </p>
-              <p className={css.copyright}>Meher Howji © {new Date().getFullYear()}</p>
+              <p className={css.copyright}>
+                Meher Howji © {new Date().getFullYear()}
+              </p>
               <p>
                 <Link href="/terms-and-conditions" passHref>
                   Terms of Service
@@ -56,7 +68,10 @@ const Footer: React.FC<FooterProps> = ({ showNewsletter = true }) => {
           </div>
 
           <div className={css.footerNav}>
-            <DesktopNav onFooter={true} onMobileNavToggle={function (): void {}} />
+            <DesktopNav
+              onFooter={true}
+              onMobileNavToggle={function (): void {}}
+            />
           </div>
         </div>
       </footer>
@@ -95,7 +110,7 @@ const SocialBar: React.FC<SocialBarProps> = ({ size }) => {
 };
 
 const SvgWave: React.FC<SvgWaveProps> = ({ parentAttr }) => {
-  const [perlinLine, setPerlinLine] = useState<string>("");
+  const [perlinLine, setPerlinLine] = useState<string>('');
 
   useEffect(() => {
     setPerlinLine(get1DPerlinNoise(parentAttr.height));
@@ -145,8 +160,8 @@ const SvgWave: React.FC<SvgWaveProps> = ({ parentAttr }) => {
       tolerance: 2.5,
       precision: 1,
     });
-    const reset = path.substring(path.indexOf("c")) + 1;
-    path = "M0,100" + reset + `L${w},${parentHeight}L0,${parentHeight}L0,100Z`;
+    const reset = path.substring(path.indexOf('c')) + 1;
+    path = 'M0,100' + reset + `L${w},${parentHeight}L0,${parentHeight}L0,100Z`;
     return path;
   }
 

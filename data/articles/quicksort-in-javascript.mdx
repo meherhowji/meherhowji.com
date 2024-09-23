@@ -1,0 +1,85 @@
+---
+title: Quicksort in JavaScript
+excerpt: Quicksort is a very neat algorithm that sorts with a very good runtime.
+publishedTime: 2022/2/7
+modifiedTime: 2022/2/7
+coverImage: /featuredImages/articles/quicksort-in-javascript.jpg
+coverCredit: Photo by Alfons Morales on Unsplash
+author: Meher Howji
+tags:
+  - algorithms
+draft: "true"
+publishTo: meherhowji.com
+---
+
+## Overview
+
+It's similar to Merge Sort where we apply a divide and conquer approach but unlike Merge sort there is
+no need to combine because Quicksort sorts in place.
+
+## Divide
+
+**Pivot** can be selected by choosing :
+
+- A right-most item in the list.
+- A randomly selected value is also taken as a pivot, the random item is then swapped with the last
+  item in the list.
+- A set of three random values are picked, and the median value among the 3 is swapped with the last
+  item in the list.
+- Items that are less than the pivot are collected on the left and right if otherwise.
+- The above evaluation will not guarantee sorted items on the left or right.
+
+## Conquer
+
+The left and right chunks are repeatedly applied with the same evaluation.
+
+## Combine
+
+No combine is needed, unlike merge sort, because the sorting happens in place.
+
+## Main Method Pseudocode
+
+- function that takes: A (input), p(starting index), r(pivot's index)
+  - if p ≥ r then do nothing
+  - get q(dividing line between the left and right chunk) by partitioning
+  - invoke the main method with the left chunk with (A, p, q-1) as parameters
+  - invoke the main method with the right chunk with (A, q+1, r) as parameters
+
+## Partition Pseudocode
+
+- function that takes: A(input), p(starting index), r(pivot's index)
+  - set q as p
+  - loop through the input
+    - check if the current value of the input is less than the pivot
+    - then swap the current value with the q
+  - after the loop, swap the r with the q ( this put the pivot in between the left and right chunks)
+
+## Code
+
+```js
+var A = [5, 4, 3, 1, 4, 53, 1, 4, 6, 3, 7, 3, 11, 2, 1, 5, 7, 3]
+
+function quicksort(A, p, r) {
+  if (p >= r) return
+
+  var q = partition(A, p, r)
+  quicksort(A, p, q - 1)
+  quicksort(A, q + 1, r)
+}
+
+function partition(A, p, r) {
+  var q = p
+
+  for (var u = p; u <= r - 1; u++) {
+    if (A[u] <= A[r]) {
+      ;[A[q], A[u]] = [A[u], A[q]]
+      q++
+    }
+  }
+  ;[A[q], A[r]] = [A[r], A[q]]
+  return q
+}
+
+quicksort(A, 0, A.length - 1)
+console.log(A)
+```
