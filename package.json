@@ -21,14 +21,14 @@
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.15",
-    "sass": "^1.79.4",
+    "sass": "^1.79.5",
     "sharp": "^0.33.5",
     "typescript": "^5.6.3",
-		"@typescript-eslint/eslint-plugin": "^7.18.0",
-		"@typescript-eslint/parser": "^7.18.0"
+		"@typescript-eslint/eslint-plugin": "^8.8.1",
+		"@typescript-eslint/parser": "^8.8.1"
   },
   "prettier": {
     "singleQuote": true

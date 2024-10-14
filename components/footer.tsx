@@ -3,10 +3,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Logo from '@/public/assets/brand/logo.svg';
-import DesktopNav from '@/app/components/desktop-nav';
-import useDimensions from '@/app/hooks/useDimensions';
-import simplifySvgPath from '@/app/hooks/simplifySvgPath';
+import DesktopNav from '@/components/desktop-nav';
+import useDimensions from '@/hooks/useDimensions';
+import simplifySvgPath from '@/hooks/simplifySvgPath';
 
 import css from '@/styles/component-css/footer.module.scss';
 

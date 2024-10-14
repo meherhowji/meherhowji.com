@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import DesktopNav from '@/app/components/desktop-nav';
-import MobileNav from '@/app/components/mobile-nav';
-import Footer from '@/app/components/footer';
+import DesktopNav from '@/components/desktop-nav';
+import MobileNav from '@/components/mobile-nav';
+import Footer from '@/components/footer';
 
 const PageContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,7 +29,6 @@ const PageContainer: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           isMobileMenuOpen ? 'slideDownOnMobile showOnMobile' : ''
         }`}
         {...swipeHandlers}
-        style={{ height: '100vh' }}
       >
         <DesktopNav onMobileNavToggle={toggleMobileNav} onFooter={false} />
         {children}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { getBlogPosts } from '@/app/db/blog';
-import PageTitle from '@/app/components/page-title';
+import { getBlogPosts } from '@/db/blog';
+import PageTitle from '@/components/page-title';
 import PageContainer from '@/app/page-container';
 import styles from '@/styles/component-css/hero.module.scss';
 
