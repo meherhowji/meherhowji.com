@@ -6,6 +6,7 @@ $menuItemsGap: 20px;
 .navbar {
 	@include container;
   display: grid;
+	width: 100%;
   grid-template-columns: 30% 70%;
   justify-content: space-between;
 

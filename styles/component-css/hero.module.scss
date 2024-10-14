@@ -6,6 +6,7 @@
 
   display: grid;
   position: relative;
+	flex: 1;
   transition: padding 500ms var(--ease-out-quad);
   grid-template-columns: 55% auto;
 

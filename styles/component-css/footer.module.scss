@@ -2,13 +2,9 @@
 
 .footer {
   position: relative;
-  @include pagePadding;
   padding-top: 200px;
   padding-bottom: 50px;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  transform: translateX(-50%);
+  width: 100%;
 
   .container {
     @include container;

@@ -1,5 +1,5 @@
-@import "@/styles/mixins/media.scss";
-@import "@/styles/mixins/mixins.scss";
+@import '@/styles/mixins/media.scss';
+@import '@/styles/mixins/mixins.scss';
 
 $anim-duration: 560ms;
 
@@ -12,12 +12,15 @@ $anim-duration: 560ms;
 
 .pageContainer {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   transition: transform $anim-duration cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
   background: var(--background);
-	@include pagePadding;
+  @include pagePadding;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: -20px;
     left: 0px;
@@ -40,7 +43,7 @@ $anim-duration: 560ms;
     }
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       top: -21px;
       left: 0px;
@@ -48,7 +51,11 @@ $anim-duration: 560ms;
       margin: 0px auto;
       width: calc(-40px + 100vw);
       height: 1px;
-      background: radial-gradient(174px at 50.14% 100.05%, #ffffff40 0%, #ffffff05 100%);
+      background: radial-gradient(
+        174px at 50.14% 100.05%,
+        #ffffff40 0%,
+        #ffffff05 100%
+      );
     }
   }
 
