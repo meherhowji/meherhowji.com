@@ -4,9 +4,8 @@ excerpt: A short story about the language of the web
 publishedTime: '2023-07-15T23:14:27'
 modifiedTime: '2023-12-18T14:24:16'
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 order: 0
 publishTo: meherhowji.com
 ---

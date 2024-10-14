@@ -1,14 +1,13 @@
 ---
 title: How I Built My Website
 excerpt: Building a website in 2023 involves a combination of modern technologies and best practices.
-publishedTime: 2023-07-19T21:38:59
+publishedTime: '2023-07-19T21:38:59'
 modifiedTime: 2023-07-21T14:53:23
 coverImage: /featuredImages/articles/how-i-built-my-website.jpg
 coverCredit: "Photo by Komarov Egor on Unsplash "
 author: Meher Howji
-tags:
-  - blog
-draft: "false"
+tags: blog
+draft: 'false'
 publishTo: meherhowji.com
 ---
 ## Next.js

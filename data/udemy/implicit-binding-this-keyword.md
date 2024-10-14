@@ -6,9 +6,8 @@ modifiedTime: '2023-12-18T21:52:40'
 coverImage: /featuredImages/articles/implicit-binding-this-keyword-part-3.jpg
 coverCredit: Photo by Simon Berger on Unsplash
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 order: 4
 publishTo: meherhowji.com
 ---

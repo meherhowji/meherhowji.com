@@ -6,9 +6,8 @@ modifiedTime: '2023-12-18T20:55:29'
 coverImage: /featuredImages/articles/default-binding-this-keyword-part-2.jpg
 coverCredit: Photo by Marek Szturc on Unsplash
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 order: 3
 publishTo: meherhowji.com
 ---

@@ -1,14 +1,13 @@
 ---
 title: THIS Keyword in JavaScript
 excerpt: The "this" keyword in JavaScript refers to the current object or context in which the code is being executed
-publishedTime: 2022-01-20T10:00:00
-modifiedTime: 2023-12-19T06:43:35
+publishedTime: '2022-01-20T10:00:00'
+modifiedTime: '2023-12-19T06:43:35'
 coverImage: /featuredImages/articles/this-keyword-part-1.jpg
 coverCredit: 
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 order: 2
 publishTo: meherhowji.com
 ---

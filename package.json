@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "start": "next dev",
+    "start": " NODE_OPTIONS='--inspect'  next dev",
     "lint": "next lint",
     "serve": "next start"
   },
   "dependencies": {
     "next": "14.2.15",
     "next-themes": "^0.3.0",
+    "ramda": "^0.30.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.13.1",
@@ -20,15 +21,16 @@
     "@next/bundle-analyzer": "^14.2.15",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.7.5",
+    "@types/ramda": "^0.30.2",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.15",
     "sass": "^1.79.5",
     "sharp": "^0.33.5",
-    "typescript": "^5.6.3",
-		"@typescript-eslint/eslint-plugin": "^8.8.1",
-		"@typescript-eslint/parser": "^8.8.1"
+    "typescript": "^5.6.3"
   },
   "prettier": {
     "singleQuote": true

@@ -1,14 +1,13 @@
 ---
 title: How I Added Light & Dark Theme SVGs on my Website
 excerpt: As my website uses light and dark themes it was important for the icons and other SVGs that I use to support it.
-publishedTime: 2023/4/24
-modifiedTime: 2023/5/16
-coverImage: ""
-coverCredit: ""
+publishedTime: '2023-04-24T00:00:00'
+modifiedTime: '2023-05-16T00:00:00'
+coverImage: ''
+coverCredit: ''
 author: Meher Howji
-tags:
-  - blog
-draft: "false"
+tags: blog
+draft: 'false'
 publishTo: meherhowji.com
 ---
 

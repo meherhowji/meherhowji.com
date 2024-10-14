@@ -1,14 +1,13 @@
 ---
 title: Linking Object or Inheriting From Objects
 excerpt: Linking objects is key to understanding the prototype system as it leads up to complex patterns involving constructors and subclasses
-publishedTime: 2023-05-31T15:15:10
-modifiedTime: 2023-07-21T22:35:12
-coverImage: ""
-coverCredit: ""
+publishedTime: '2023-05-31T15:15:10'
+modifiedTime: '2023-07-21T22:35:12'
+coverImage: ''
+coverCredit: ''
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 publishTo: meherhowji.com
 order: 10
 ---

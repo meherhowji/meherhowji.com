@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { getBlogPosts } from '@/db/blog';
+import { getBlogPosts } from '@/db/read-markdown-files';
 import PageTitle from '@/components/page-title';
 import PageContainer from '@/app/page-container';
 import styles from '@/styles/component-css/hero.module.scss';
+import TutorialList from '@/components/tutorial-list';
 
 /*
 import { allPosts } from 'contentlayer/generated';
@@ -20,13 +21,15 @@ export const metadata: Metadata = {
 };
 
 export default function Articles() {
-  let allPosts = getBlogPosts();
+  let posts  = getBlogPosts()
+  console.log('🚀 ~ Articles ~ allPosts:', posts);
+
   return (
     <PageContainer>
       <section className={`${styles.hero} ${styles.nonLandingScreen}`}>
-        <PageTitle preTitle={`${allPosts.length} POSTS`} title="Articles" />
+        <PageTitle preTitle={`${posts.length} POSTS`} title="Articles" />
         {/* TODO: start fixing here, the pagetitle was styled well, not tutoriallist needs to be styled*/}
-        {/* <TutorialList postList={allPosts.filter(finalDraft)} /> */}
+        <TutorialList postList={posts.filter(finalDraft)} />
         {/* <ViewCounter
         slug={'articles-page'}
         trackView={true}

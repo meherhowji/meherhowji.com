@@ -2,10 +2,9 @@
 title: Understanding JS Code Execution
 excerpt: Learning how JS manages memory is key to understanding advanced concepts such as Closures and Async JS.
 publishedTime: '2024-01-26T16:53:26'
-modifiedTime: '2024-02-29T06:35:43'
+modifiedTime: '2024-06-23T10:53:45'
 author: Meher Howji
-tags:
-  - javascript
+tags: javascript
 draft: 'true'
 order: 1
 publishTo: meherhowji.com

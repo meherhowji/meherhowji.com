@@ -1,14 +1,13 @@
 ---
 title: Inheritance in JavaScript
 excerpt: Inheritance in JavaScript is more like a team where you delegate tasks that you cannot do yourself, this is the reason this relationship model in JS is referred to as Behaviour Delegation.
-publishedTime: 2023/4/24
+publishedTime: '2023-04-24T00:00:00'
 modifiedTime: 2023/5/16
-coverImage: ""
-coverCredit: ""
+coverImage: ''
+coverCredit: ''
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript
+draft: 'false'
 order: 6
 publishTo: meherhowji.com
 ---

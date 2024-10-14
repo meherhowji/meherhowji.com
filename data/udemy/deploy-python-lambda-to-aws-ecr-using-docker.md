@@ -4,7 +4,7 @@ excerpt: 'A python lambda is the easiest way to start exploring the AWS ecosyste
 publishedTime: '2022-07-23T00:00:00'
 modifiedTime: '2023-07-22T23:35:51'
 author: 'Meher Howji'
-tags: ['cloud']
+tags: 'cloud'
 draft: 'false'
 publishTo: meherhowji.com
 ---

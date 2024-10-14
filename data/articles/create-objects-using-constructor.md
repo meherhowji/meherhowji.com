@@ -3,12 +3,11 @@ title: Create Objects using a Constructor
 excerpt: Inheritance in JavaScript allows objects to inherit(actually link) to properties and methods of other objects, creating a hierarchical relationship between them.
 publishedTime: '2023-05-31T00:00:00'
 modifiedTime: '2023-12-23T22:40:14'
-coverImage: ""
-coverCredit: ""
+coverImage: ''
+coverCredit: ''
 author: Meher Howji
-tags:
-  - javascript
-draft: "false"
+tags: javascript, test
+draft: 'false'
 publishTo: meherhowji.com
 order: 9
 ---

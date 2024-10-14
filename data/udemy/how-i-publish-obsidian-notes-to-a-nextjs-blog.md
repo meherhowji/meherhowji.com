@@ -4,7 +4,7 @@ excerpt: 'Publishing posts becomes seamless as everything is in the same world o
 publishedTime: '2023-07-16T01:19:06'
 modifiedTime: '2023-12-16T06:21:38'
 author: 'Meher Howji'
-tags: ['blog']
+tags: 'blog'
 draft: 'false'
 publishTo: 'meherhowji.com'
 ---

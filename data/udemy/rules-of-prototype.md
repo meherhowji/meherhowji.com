@@ -4,10 +4,9 @@ excerpt: Understand the rules that drives the prototype system. It is key to mas
 publishedTime: '2022-03-07T00:00:00'
 modifiedTime: '2023-12-24T23:37:25'
 author: Meher Howji
-tags:
-  - javascript
+tags: javascript
 publishTo: meherhowji.com
-draft: "true"
+draft: 'true'
 order: 7
 ---
 If you read the [[introduction-to-javascript|introduction]], you then would recall that the language 'Self' influences the prototype system and therefore it makes sense to approach this concept from a mindset that is not based on a class-based language. Although ES6 introduced classes in JS, it is just a wrapper over the prototype system to emulate class-like behaviour.
