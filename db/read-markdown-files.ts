@@ -1,12 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-interface BlogPost {
-  content: string;
-  metadata: Metadata;
-  computedFields: ComputedFields;
-}
-
 interface ComputedFields {
   slug: string;
   readingTime: string;
@@ -26,26 +20,30 @@ type Metadata = {
   publishTo?: string;
 };
 
+interface FlatData extends Metadata, ComputedFields {
+  content: string;
+}
+
 // Define the absolute path to the Markdown blog posts directory.
 // process.cwd() returns the current working directory of the Node.js process,
 // and path.join() is used to append the relative path (MARKDOWN_BLOG_POSTS_PATH)
 // to create the full path to the blog posts directory.
-export function getBlogPosts(): BlogPost[] {
+export function getBlogPosts(): FlatData[] {
   const MARKDOWN_BLOG_POSTS_PATH = 'data/articles';
   const ROOT_FOLDER = path.join(process.cwd(), MARKDOWN_BLOG_POSTS_PATH);
   // getMDXData > getMDXFiles > readMDXFile > parseFrontMatter > enrichComputedFields
   return getMDXData(ROOT_FOLDER); //
 }
 
-function getMDXData(folder: string): BlogPost[] {
+function getMDXData(folder: string): FlatData[] {
   return getMDXFiles(folder).map((file) => {
     const { content, metadata } = readMDXFile(path.join(folder, file));
     const slug = path.basename(file, path.extname(file));
     const computedFields = enrichComputedFields(slug, content); // Enrich the blog post with computed fields
     return {
       content,
-      metadata,
-      computedFields,
+      ...metadata,
+      ...computedFields,
     };
   });
 }

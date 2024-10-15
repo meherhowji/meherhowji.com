@@ -21,12 +21,10 @@ export const metadata: Metadata = {
 };
 
 export default function Articles() {
-  let posts  = getBlogPosts()
-  console.log('🚀 ~ Articles ~ allPosts:', posts);
-
+  let posts = getBlogPosts();
   return (
     <PageContainer>
-      <section className={`${styles.hero} ${styles.nonLandingScreen}`}>
+      <section className={`${styles.page} ${styles.nonLandingScreen}`}>
         <PageTitle preTitle={`${posts.length} POSTS`} title="Articles" />
         {/* TODO: start fixing here, the pagetitle was styled well, not tutoriallist needs to be styled*/}
         <TutorialList postList={posts.filter(finalDraft)} />

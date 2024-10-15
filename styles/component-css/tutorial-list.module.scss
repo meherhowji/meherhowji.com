@@ -1,96 +1,133 @@
-@import '@/styles/mixins.scss';
+// tutorial-list.js
+.topicList {
+  display: relative;
 
-.coverImage {
-  position: relative;
-  height: 180px;
-  margin-bottom: 30px;
-  box-shadow:
-    0 30px 60px -10px rgb(0 0 0 / 30%),
-    0 18px 36px -18px rgb(0 0 0 / 33%);
-  -webkit-transition:
-    -webkit-transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
-  -webkit-transition:
-    transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
-  transition:
-    transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
-
-  & > img {
-    object-fit: cover;
+  .topicSubTitle {
+    padding: 4px 0;
+    font-size: 0.6rem;
+    text-transform: uppercase;
   }
 
-  span {
-    border-radius: 5px;
+  .topicTitle h3 {
+    text-transform: capitalize;
+    letter-spacing: -0.05rem;
+    margin-top: 10px;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+
+    a {
+      color: var(--primary);
+
+      &:hover {
+        text-decoration: none;
+        color: var(--secondary);
+      }
+    }
+  }
+
+  .icon {
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity 0.3s ease-in-out;
+
+    svg {
+      width: 16px;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .topicItem {
+    display: grid;
+    grid-template-columns: 20% 80%;
+  }
+
+  .topicListContainer {
+    background: var(--primary-invert);
+    border-radius: 20px;
+    padding: 40px 30px !important;
+    overflow: hidden;
+  }
+
+  .rowBottomGap {
+    margin-bottom: 70px !important;
+  }
+
+  .scroller {
+    position: relative;
+    mask-image: linear-gradient(rgb(255, 255, 255) 85%, rgba(255, 255, 255, 0) 100%);
+    scrollbar-width: thin;
+  }
+
+  .showScroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    & > div:not(:nth-child(-n + 4)) {
+      margin-top: 10px;
+    }
   }
 }
 
-.postTitle {
-  color: var(--primary);
-  word-break: keep-all;
-  font-size: 1rem;
-  line-height: 1.333;
-  font-weight: bold;
-  -webkit-transition: color 0.3s ease-in-out;
-  transition: color 0.3s ease-in-out;
-  text-overflow: ellipsis;
-  overflow-wrap: normal;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  white-space: normal;
-  overflow: hidden;
+// tutorial-list-item.js
+.post {
+  display: flex;
+  padding: 5px 0;
+  transition: transform 0.3s var(--ease-out-quad), box-shadow 0.3s var(--ease-out-quad);
 
-  a {
-    color: var(--primary);
+  &:hover {
+    cursor: pointer;
   }
 
-  a:hover {
-    color: var(--primary);
-    text-decoration: none;
+  &:hover .coverImage {
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.27) 0px 50px 80px -20px, rgba(0, 0, 0, 0.3) 0px 30px 50px -30px;
+  }
+
+  h2 {
+    transition: text-shadow 0.3s var(--ease-out-quad);
+  }
+
+  &:hover h2 {
+    text-shadow: 0 0 2px rgba(255, 255, 255);
+  }
+
+  .postIndex {
+    min-width: 60px;
+
+    .chapterNumber {
+      display: block;
+      background: var(--tertiary-invert);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 36px;
+      font-size: 1rem;
+      font-weight: 700;
+      user-select: none;
+    }
   }
 }
 
-.chapterNumber {
-  display: block;
-  background: var(--tertiary-invert);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 36px;
-  font-size: 1rem;
-  font-weight: 700;
-  user-select: none;
-}
+// tutorial-title.js
+.postContent {
+  padding: 0 25px 0 5px;
 
-.postListContainer {
-  background: var(--primary-invert);
-  border-radius: 20px;
-  padding: 40px 30px !important;
-  overflow: hidden;
-}
-
-.scroller {
-  position: relative;
-  padding-right: 15px;
-  max-height: 295px;
-  mask-image: linear-gradient(rgb(255, 255, 255) 85%, rgba(255, 255, 255, 0) 100%);
-  scrollbar-width: thin;
-}
-
-.showScroller {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.postSubTitle {
-  @include subtitle;
-  font-size: 0.85rem !important;
-}
-
-.postDescription {
   p {
     color: var(--secondary);
     text-overflow: ellipsis;
@@ -104,93 +141,66 @@
     margin-top: 10px;
     max-width: 543px;
   }
-}
 
-.rowBottomGap {
-  margin-bottom: 70px !important;
-}
-
-.columnGap {
-  padding: 1rem;
-}
-
-.readingTime {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 600;
-}
-
-.courseTitle {
-  text-transform: capitalize;
-  letter-spacing: -0.05rem;
-  margin-top: 10px;
-  transition: transform 0.3s ease-in-out;
-
-  &:hover {
-    transform: scale(1.01);
-  }
-
-  a {
+  .postTitle {
     color: var(--primary);
+    word-break: keep-all;
+    font-size: 1rem;
+    line-height: 1.333;
+    font-weight: bold;
+    -webkit-transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    white-space: normal;
+    overflow: hidden;
+    margin: 0;
+    padding: 8px 0;
 
-    &:hover {
+    a {
+      color: var(--primary);
+    }
+
+    a:hover {
+      color: var(--primary);
       text-decoration: none;
-      color: var(--secondary);
     }
   }
-}
 
-.courseSubTitle {
-  padding: 4px 0;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-}
+  .postSubTitle {
+    font-size: 0.85rem !important;
+    margin-top: 2px;
+    line-height: 21px;
+  }
 
-.interColumnGap {
-  & > div:not(:nth-child(-n + 4)) {
-    margin-top: 10px;
+  .readingTime {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
   }
 }
 
-.tutorialListItem {
-  transition:
-    transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
+// .coverImage {
+//   position: relative;
+//   height: 180px;
+//   margin-bottom: 30px;
+//   box-shadow: 0 30px 60px -10px rgb(0 0 0 / 30%),
+//     0 18px 36px -18px rgb(0 0 0 / 33%);
+//   -webkit-transition: -webkit-transform 0.3s var(--ease-out-quad),
+//     box-shadow 0.3s var(--ease-out-quad);
+//   -webkit-transition: transform 0.3s var(--ease-out-quad),
+//     box-shadow 0.3s var(--ease-out-quad);
+//   transition: transform 0.3s var(--ease-out-quad),
+//     box-shadow 0.3s var(--ease-out-quad);
 
-  &:hover {
-    cursor: pointer;
-  }
+//   & > img {
+//     object-fit: cover;
+//   }
 
-  &:hover .coverImage {
-    transform: translateY(-2px);
-    box-shadow:
-      rgba(0, 0, 0, 0.27) 0px 50px 80px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 50px -30px;
-  }
-
-  h2 {
-    transition: text-shadow 0.3s var(--ease-out-quad);
-  }
-
-  &:hover h2 {
-    text-shadow: 0 0 2px rgba(255, 255, 255);
-  }
-}
-
-.icon {
-  cursor: pointer;
-  opacity: 0.4;
-  transition: opacity 0.3s ease-in-out;
-
-  svg {
-    width: 16px;
-  }
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &.active {
-    opacity: 1;
-  }
-}
+//   span {
+//     border-radius: 5px;
+//   }
+// }

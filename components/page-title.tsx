@@ -1,3 +1,5 @@
+import styles from '@/styles/component-css/hero.module.scss'
+
 interface PageTitleProps {
   title?: string;
   preTitle?: string;
@@ -12,7 +14,7 @@ const PageTitle: React.FC<PageTitleProps> = ({
   ...props
 }) => {
   return (
-    <div {...props}>
+    <div {...props} className={styles.pageTitle}>
       {preTitle && <h5>{preTitle}</h5>}
       {title && <h1>{title}</h1>}
       {subTitle && <h2>{subTitle}</h2>}

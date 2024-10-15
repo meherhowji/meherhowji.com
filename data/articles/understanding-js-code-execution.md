@@ -1,0 +1,46 @@
+---
+title: Understanding JS Code Execution
+excerpt: Learning how JS manages memory is key to understanding advanced concepts such as Closures and Async JS.
+publishedTime: '2024-01-26T16:53:26'
+modifiedTime: '2024-06-23T10:53:45'
+author: Meher Howji
+tags: javascript
+draft: 'true'
+order: 1
+publishTo: meherhowji.com
+---
+JavaScript executes our code from top to bottom order and only moves to the next statement once it is done executing the current statement. So in JS, one thing happens at a time as it is a single-threaded language.
+
+As soon as we run our code, JS creates a [[Global Execution Context]].
+
+- A part of it takes care of the thread of execution which is parsing and execution of the code line by line.
+- The other part keeps a live memory of variables with data which is also known as the [[Global Variable Environment]]
+
+Let's look at this simple code and understand how JS will interpret it.
+
+```javascript
+const msg = 'hi'
+
+function greet(person) {
+  const greeting = `hello ${person}`
+  return greeting
+}
+
+const person = 'Meher'
+```
+
+JS goes through the `msg`, `greet`, and `person` identifiers, and creates a reference for each identifier in the Stack Memory to an address which corresponds to the assigned value.
+
+| Stack                   |                                                      |
+| ----------------------- | ---------------------------------------------------- |
+| 5Q4OCILZJGN1 _(msg)_    | hi                                                   |
+| 2MTZAOL8G9XW _(greet)_  | 8VUWO1XI4JY2 _(points to the function body in heap)_ |
+| 1UQ5ICHZVXST _(person)_ | Meher                                                |
+
+| Heap                             |
+| -------------------------------- |
+| `function greet(person) { ... }` |
+
+JavaScript uses Heap to store the item's values which are not primitives e.g. arrays, objects or functions, generally speaking where the size of these is not known at the runtime. In our example, the value of the identifier `greet` is a reference to the function body in the Heap.
+
+> JS doesn't process the function body until it is invoked.

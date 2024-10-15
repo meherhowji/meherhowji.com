@@ -6,7 +6,7 @@
 
   display: grid;
   position: relative;
-	flex: 1;
+  flex: 1;
   transition: padding 500ms var(--ease-out-quad);
   grid-template-columns: 55% auto;
 
@@ -162,5 +162,16 @@
   @include mobile {
     padding-top: 60px;
     grid-template-columns: 100%;
+  }
+}
+
+.page {
+  @include container;
+	flex: 1 1;
+
+  .pageTitle {
+    display: flex;
+    flex-direction: column;
+		padding: 10px 0 100px 0;
   }
 }

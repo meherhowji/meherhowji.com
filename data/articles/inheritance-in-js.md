@@ -1,0 +1,40 @@
+---
+title: Inheritance in JavaScript
+excerpt: Inheritance in JavaScript is more like a team where you delegate tasks that you cannot do yourself, this is the reason this relationship model in JS is referred to as Behaviour Delegation.
+publishedTime: '2023-04-24T00:00:00'
+modifiedTime: 2023/5/16
+coverImage: ''
+coverCredit: ''
+author: Meher Howji
+tags: javascript
+draft: 'false'
+order: 6
+publishTo: meherhowji.com
+---
+
+https://www.youtube.com/watch?v=EelD6EFWgcs
+
+JavaScript's prototypal system is inspired by the language Self. Self was the first one to
+implement the prototypal system. Lua, ActionScript, JScript, Cecil and many other languages exist that implement this
+pattern.
+
+In the prototype system, there are no classes. JS has no classes either in the true sense and the ES6 classes you use are just syntactic sugar over the prototypes. What that means is behind the scenes JS writes a prototype-based code that makes your class-based code work.
+
+Class-based languages are based on a deep-rooted duality of Classes and Object Instances. For instance,
+if we create an object of the class Vehicle, such as Red Car, and ask it to deliver a super
+heavy material, it will not be feasible because Red Car is not equipped for that and it is something
+that's wired in Vehicle class. This highlights the importance of subclassing, which enables creating
+specialised classes, such as Sports Cars and Trucks, with their unique capabilities.
+
+However, predicting the future qualities of objects and classes is challenging, and systems can
+become rigid when the initial design does not anticipate future changes. This
+was one of the motivations for creating prototype features, as such use cases occur in real-world development
+all the time.
+
+## Behaviour Delegation
+
+In JavaScript, behaviour delegation refers to a programming pattern where an object delegates certain behaviours or methods to another object. This pattern is based on the concept of prototypal inheritance, where objects can inherit properties and methods from other objects.
+
+Instead of using class-based inheritance, behaviour delegation allows objects to _directly_ reference and delegate to other objects, known as prototypes. When a method is invoked on an object, JavaScript looks for that method in the object’s prototype chain, searching for the first object that implements the method.
+
+This pattern promotes code reuse and flexibility, as objects can dynamically delegate behaviour to different prototypes at runtime. It is commonly used in JavaScript to achieve composition and create flexible object relationships. The `Object.create()` method and the `[[Prototype]]` mechanism are key features supporting behaviour delegation in JavaScript.
