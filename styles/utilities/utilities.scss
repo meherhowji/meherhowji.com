@@ -1,4 +1,4 @@
-@import "@/styles/mixins.scss";
+@use "@/styles/mixins/mixins.scss";
 
 // Base positioning utilities
 .rel {
@@ -56,10 +56,10 @@ a.anchor-markdown {
     transform-origin: bottom left;
   }
 
-  &:hover {
+  // &:hover {
     // Uncomment and adjust the color as needed
     // color: #ffcf74;
-  }
+  // }
 }
 
 // Typography utilities

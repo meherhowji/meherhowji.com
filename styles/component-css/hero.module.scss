@@ -1,8 +1,8 @@
-@import '@/styles/mixins/mixins.scss';
-@import '@/styles/mixins/media.scss';
+@use '@/styles/mixins/mixins.scss';
+@use '@/styles/mixins/media.scss';
 
 .hero {
-  @include container;
+  @include mixins.container;
 
   display: grid;
   position: relative;
@@ -10,24 +10,24 @@
   transition: padding 500ms var(--ease-out-quad);
   grid-template-columns: 55% auto;
 
-  @include fullhd {
+  @include media.fullhd {
     padding-block: 150px;
   }
 
-  @include widescreen-only {
+  @include media.widescreen-only {
     padding-block: 150px;
   }
 
-  @include desktop-only {
+  @include media.desktop-only {
     padding-block: 150px;
   }
 
-  @include tablet-only {
+  @include media.tablet-only {
     padding-block: 80px;
     grid-template-columns: 55% auto;
   }
 
-  @include mobile {
+  @include media.mobile {
     padding-top: 60px;
     grid-template-columns: 100%;
   }
@@ -58,25 +58,25 @@
       margin-bottom: 15px;
       letter-spacing: -1px;
 
-      @include mobile {
+      @include media.mobile {
         width: 100%;
         font-size: 36px !important;
         text-align: center !important;
       }
 
-      @include tablet-only {
+      @include media.tablet-only {
         font-size: 36px !important;
       }
 
-      @include small-tablet-only {
+      @include media.small-tablet-only {
         font-size: 34px !important;
       }
 
-      @include small-tablet-only {
+      @include media.small-tablet-only {
         font-size: 30px !important;
       }
 
-      @include desktop-only {
+      @include media.desktop-only {
         font-size: 46px !important;
       }
     }
@@ -88,24 +88,24 @@
       font-size: 24px;
       margin: 0;
 
-      @include mobile {
+      @include media.mobile {
         font-size: 1.1rem !important;
         text-align: center !important;
       }
 
-      @include tablet-only {
+      @include media.tablet-only {
         font-size: 24px !important;
       }
 
-      @include small-tablet-only {
+      @include media.small-tablet-only {
         font-size: 20px !important;
       }
 
-      @include smaller-tablet-only {
+      @include media.smaller-tablet-only {
         font-size: 18px !important;
       }
 
-      @include desktop-only {
+      @include media.desktop-only {
         font-size: 30px !important;
       }
     }
@@ -121,21 +121,21 @@
         margin-bottom: 0;
       }
 
-      @include tablet-only {
+      @include media.tablet-only {
         margin-top: 20px;
         font-size: 13px !important;
         line-height: 18px;
       }
 
-      @include small-tablet-only {
+      @include media.small-tablet-only {
         font-size: 13px !important;
       }
 
-      @include smaller-tablet-only {
+      @include media.smaller-tablet-only {
         font-size: 11px !important;
       }
 
-      @include desktop-only {
+      @include media.desktop-only {
         margin-top: 30px;
         font-size: 14px !important;
         line-height: 18px;
@@ -159,14 +159,14 @@
 .nonLandingScreen {
   padding-block: 80px;
 
-  @include mobile {
+  @include media.mobile {
     padding-top: 60px;
     grid-template-columns: 100%;
   }
 }
 
 .page {
-  @include container;
+  @include mixins.container;
 	flex: 1 1;
 
   .pageTitle {

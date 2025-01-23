@@ -1,6 +1,6 @@
-@charset "utf-8";
+@use "sass:meta";
 @import "./normalise.css";
-@import "./theme/theme-variables.scss";
+@include meta.load-css("theme/theme-variables.scss");
 
 :root {
   cursor: default;
@@ -36,6 +36,6 @@ body {
   height: 100%;
 }
 
-@import "./layout.scss";
-@import "./theme/typography.scss";
-@import "./utilities/overrides.scss";
+@include meta.load-css("layout.scss");
+@include meta.load-css("theme/typography.scss");
+@include meta.load-css("utilities/overrides.scss");

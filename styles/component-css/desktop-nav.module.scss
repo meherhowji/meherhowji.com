@@ -1,16 +1,16 @@
-@import "../mixins/media.scss";
-@import '@/styles/mixins/mixins.scss';
+@use "@/styles/mixins/media.scss";
+@use '@/styles/mixins/mixins.scss';
 
 $menuItemsGap: 20px;
 
 .navbar {
-	@include container;
+	@include mixins.container;
   display: grid;
 	width: 100%;
   grid-template-columns: 30% 70%;
   justify-content: space-between;
 
-  @include mobile {
+  @include media.mobile {
     grid-template-columns: 100%;
   }
 
@@ -39,7 +39,7 @@ $menuItemsGap: 20px;
       align-items: center;
       cursor: pointer;
 
-      @include mobile {
+      @include media.mobile {
         display: flex;
       }
     }
@@ -63,7 +63,7 @@ $menuItemsGap: 20px;
     justify-content: flex-end;
     align-items: center;
 
-    @include mobile {
+    @include media.mobile {
       display: none;
     }
 

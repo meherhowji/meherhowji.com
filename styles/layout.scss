@@ -1,5 +1,5 @@
-@import '@/styles/mixins/media.scss';
-@import '@/styles/mixins/mixins.scss';
+@use '@/styles/mixins/media.scss';
+@use '@/styles/mixins/mixins.scss';
 
 $anim-duration: 560ms;
 
@@ -17,7 +17,7 @@ $anim-duration: 560ms;
   min-height: 100vh;
   transition: transform $anim-duration cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
   background: var(--background);
-  @include pagePadding;
+  @include mixins.pagePadding;
 
   &:after {
     content: '';
@@ -35,7 +35,7 @@ $anim-duration: 560ms;
   &.slideDownOnMobile {
     position: fixed;
 
-    @include mobile {
+    @include media.mobile {
       transform: translateY(525px);
       touch-action: none;
       position: fixed;
@@ -59,7 +59,7 @@ $anim-duration: 560ms;
     }
   }
 
-  @include mobile {
+  @include media.mobile {
     background-repeat: no-repeat;
     background-position: 0 0;
   }

@@ -4,33 +4,33 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "start": " NODE_OPTIONS='--inspect'  next dev",
+    "start": "next dev",
     "lint": "next lint",
     "serve": "next start"
   },
   "dependencies": {
-    "next": "14.2.15",
-    "next-themes": "^0.3.0",
+    "next": "15.1.6",
+    "next-themes": "^0.4.4",
     "ramda": "^0.30.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-intersection-observer": "^9.13.1",
-    "react-swipeable": "^7.0.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.15.1",
+    "react-swipeable": "^7.0.2"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.15",
+    "@next/bundle-analyzer": "^15.1.6",
     "@svgr/webpack": "^8.1.0",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.10.8",
     "@types/ramda": "^0.30.2",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^8.8.1",
-    "@typescript-eslint/parser": "^8.8.1",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.15",
-    "sass": "^1.79.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "15.1.6",
+    "sass": "^1.83.4",
     "sharp": "^0.33.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.3"
   },
   "prettier": {
     "arrowParens": "avoid",

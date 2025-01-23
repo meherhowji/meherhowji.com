@@ -1,4 +1,4 @@
-@import "@/styles/mixins/mixins.scss";
+@use "@/styles/mixins/mixins.scss";
 
 .footer {
   position: relative;
@@ -7,7 +7,7 @@
   width: 100%;
 
   .container {
-    @include container;
+    @include mixins.container;
     display: grid;
     grid-template-columns: 45% 55%;
     justify-content: space-between;
