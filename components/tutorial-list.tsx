@@ -27,6 +27,7 @@ const TutorialList: React.FC<TutorialListProps> = ({ postList }) => {
   return (
     groupedPosts && (
       <section className={`${css.topicList}`}>
+        {console.log(groupedPosts)}
         {/* TODO: add type for tag and posts*/}
         {Array.from(groupedPosts).map(([tag, posts]: any) => (
           <div className={css.topicItem} key={tag}>
