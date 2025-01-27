@@ -20,7 +20,6 @@ export default function Articles() {
     <PageContainer>
       <section className={`${styles.page} ${styles.nonLandingScreen}`}>
         <PageTitle preTitle={`${posts.length} POSTS`} title="Articles" />
-        {/* TODO: start fixing here, the pagetitle was styled well, not tutoriallist needs to be styled*/}
         <TutorialList postList={posts.filter(finalDraft)} />
         {/* <ViewCounter
         slug={'articles-page'}
