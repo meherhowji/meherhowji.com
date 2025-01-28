@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import DesktopNav from '@/components/desktop-nav'
-import useDimensions from '@/hooks/useDimensions'
-import simplifySvgPath from '@/hooks/simplifySvgPath'
+import useDimensions from '@/lib/hooks/useDimensions'
+import simplifySvgPath from '@/lib/hooks/simplifySvgPath'
 
 import css from '@/styles/component-css/footer.module.scss'
 

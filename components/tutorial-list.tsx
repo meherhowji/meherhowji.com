@@ -1,8 +1,8 @@
 'use client'
 
 import TutorialListItem from './tutorial-list-item'
-import useGroupedPosts from '@/hooks/useGroupedPost'
-import useLocalStorage from '@/hooks/useLocalStorage'
+import useGroupedPosts from '@/lib/hooks/useGroupedPost'
+import useLocalStorage from '@/lib/hooks/useLocalStorage'
 import css from '@/styles/component-css/tutorial-list.module.scss'
 
 interface Post {
