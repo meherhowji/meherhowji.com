@@ -23,14 +23,15 @@ type Params = {
 export default async function Page(props: Params) {
   const { slug } = await props.params
   const post = await getPosts(slug)
-  return <div>{post.slug}</div>
+  // return <div>{JSON.stringify(post)}</div>
   // return <Post postDetails={post} prevNext={[]} backlinks={post.backlinks} toc={post.toc} />
 
-  // return Array.isArray(post) ? (
-  //   <PostList postDetails={post} />
-  // ) : (
-  //   <Post postDetails={post} prevNext={[previousSlug, nextSlug]} backlinks={post.backlinks} toc={post.toc} />
-  // )
+  return Array.isArray(post) ? (
+    <PostList postDetails={post} />
+  ) : (
+    <Post postDetails={post} backlinks={post.backlinks} toc={post.toc} />
+    // prevNext={[previousSlug, nextSlug]}
+  )
 }
 
 export async function getPosts(slug: string) {

@@ -1,20 +1,21 @@
 'use client'
-import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
-import { GoToTutorialArrow, TableOfContent, ViewCounter } from '@/components'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import debounce from 'lodash.debounce'
+import Image from 'next/image'
+import throttle from 'lodash.throttle'
+import useSWR from 'swr'
+
+// import TutorialLayout from '@/layouts/tutorialLayout'
+import { TableOfContent, ViewCounter } from '@/components'
+import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
+import distanceToNow from '@/lib/utils/dateRelative.js'
+import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
 // import authorThumb from '@/public/assets/author/32x32.png'
 // import cn from 'classnames'
 // import css from './slug.module.scss'
-import debounce from 'lodash.debounce'
-import distanceToNow from '@/lib/utils/dateRelative.js'
-import Image from 'next/image'
-import throttle from 'lodash.throttle'
-import TutorialLayout from '@/layouts/tutorialLayout'
-import useSWR from 'swr'
-import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
 
 export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
   const router = useRouter()
@@ -86,7 +87,6 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
         <div className="container">
           <div className={cn(css.postHeader)}>
             <div className="columns is-centered">
-              <GoToTutorialArrow isNext={false} prevNext={prevNext} />
               <header className="column is-two-thirds ">
                 <h1 className="has-text-centered">{p.title}</h1>
                 <h3 className={cn('has-text-centered', css.postDetailSubtitle)}>{p.excerpt}</h3>
@@ -119,7 +119,6 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
                   </span>
                 </div>
               </header>
-              <GoToTutorialArrow isNext={true} prevNext={prevNext} />
             </div>
           </div>
 

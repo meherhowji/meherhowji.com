@@ -1,5 +1,5 @@
 'use client';
-import PageContainer from '@/app/page-container';
+import PageContainer from '@/app/articles/layout';
 import Hero from '@/components/hero';
 
 export default function Home() {
