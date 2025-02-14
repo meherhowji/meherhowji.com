@@ -11,8 +11,8 @@
 import { Metadata } from 'next'
 import { getBlogPosts } from '@/db/read-markdown-files'
 import { getBacklinks, getHeadings, finalDraft, tagOrder } from '@/lib/utils/mdxUtils'
-import Post from '@/components/post'
-import PostList from '@/components/postList'
+import PostList from './slugList'
+import Post from './slug'
 
 type Params = {
   params: Promise<{
@@ -23,27 +23,26 @@ type Params = {
 export default async function Page(props: Params) {
   const { slug } = await props.params
   const post = await getPosts(slug)
-  // return <div>{JSON.stringify(post)}</div>
-  // return <Post postDetails={post} prevNext={[]} backlinks={post.backlinks} toc={post.toc} />
 
   return Array.isArray(post) ? (
     <PostList postDetails={post} />
   ) : (
-    <Post postDetails={post} backlinks={post.backlinks} toc={post.toc} />
-    // prevNext={[previousSlug, nextSlug]}
+    <></>
+    // <Post postDetails={post} backlinks={post.backlinks} toc={post.toc} />
   )
 }
 
 export async function getPosts(slug: string) {
-  const posts = getBlogPosts()
+  const posts = await getBlogPosts()
+  console.log('🚀 ~ getPosts ~ post:', posts)
 
   if (tagOrder.includes(slug)) {
     // Get all posts that have the tag matching the slug
-    return { post: posts.filter(post => post.tags[0] === slug) }
+    return { post: posts.filter(post => post.frontmatter.tags.split(',').join('')[0] === slug) }
   }
 
   // Get the post that matches the slug
-  const post = posts.find(post => post.slug === slug)
+  const post = posts.find(post => post.frontmatter.slug === slug)
   if (!post) return {}
 
   // Gather additional data for the matched post
@@ -54,15 +53,15 @@ export async function getPosts(slug: string) {
   }
 }
 
-// this functions creates unique static for each item in the array
-// aka static rendering, where the data is not personalised e.g. blog post, product page
+// Creates unique static page for each item in the array for static rendering
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 export async function generateStaticParams() {
   // an object return like this {params: { slug: 'this-keyword'}} generates a page
-  let posts = getBlogPosts()
-    .filter(finalDraft)
+  const blogPosts = await getBlogPosts()
+  let posts = blogPosts
+    .filter(post => post.frontmatter.draft === 'false')
     .map(post => ({
-      slug: post.slug,
+      slug: post.frontmatter.slug,
     }))
   // make tags their own page as well e.g. meherhowji.com/javascript should load all JS posts
   const tagSlugs = tagOrder.map(tag => ({

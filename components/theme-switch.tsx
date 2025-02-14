@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useTheme } from "next-themes";
-import css from "@/styles/component-css/theme-switch.module.scss";
+import css from "@/components/component-css/theme-switch.module.scss";
 
 const ThemeSwitch: React.FC = () => {
   const { theme, setTheme, systemTheme } = useTheme();

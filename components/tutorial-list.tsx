@@ -2,8 +2,8 @@
 
 import TutorialListItem from './tutorial-list-item'
 import useGroupedPosts from '@/lib/hooks/useGroupedPost'
-import useLocalStorage from '@/lib/hooks/useLocalStorage'
-import css from '@/styles/component-css/tutorial-list.module.scss'
+// import useLocalStorage from '@/lib/hooks/useLocalStorage'
+import css from '@/components/component-css/tutorial-list.module.scss'
 
 interface Post {
   title: string

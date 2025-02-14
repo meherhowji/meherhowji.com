@@ -1,6 +1,6 @@
 import React from 'react'
 import TutorialTitle from './tutorial-title'
-import styles from '@/styles/component-css/tutorial-list.module.scss'
+import styles from '@/components/component-css/tutorial-list.module.scss'
 import { useRouter } from 'next/navigation'
 
 interface Post {

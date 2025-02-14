@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/styles/component-css/mobile-nav.module.scss";
+import styles from "@/components/component-css/mobile-nav.module.scss";
 
 interface MobileNavProps {
   showOnToggle: boolean;

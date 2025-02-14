@@ -1,17 +1,10 @@
+'use client'
 import { useEffect, useState } from 'react'
-import cn from 'classnames'
-import css from './tableOfContent.module.scss'
+import css from './component-css/table-of-content.module.scss'
 import throttle from 'lodash.throttle'
-import { LikeButton } from '@/components'
+// import { LikeButton } from '@/components'
 
-export default function TableOfContent({
-  inView,
-  bottomInView,
-  coverInView,
-  contentBounds,
-  likeMeta,
-  list,
-}) {
+export default function TableOfContent({ inView, bottomInView, coverInView, contentBounds, likeMeta, list }) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -33,11 +26,9 @@ export default function TableOfContent({
   }, [contentBounds])
 
   return (
-    <div className={cn(css.indicator, bottomInView ? css.absoluteBottom : inView ? css.fixed : '')}>
+    <div className={`{css.indicator ${bottomInView ? css.absoluteBottom : inView ? css.fixed : ''}`}>
       <div className={css.content}>
-        <div
-          className={cn(css.topArrow, { [css.disappear]: coverInView })}
-          onClick={() => window.scrollTo(0, 0)}>
+        <div className={`{css.topArrow ${css.disappear && coverInView}`} onClick={() => window.scrollTo(0, 0)}>
           <GoToTopArrow />
         </div>
         <div className={css.indicatorWrapper}>
@@ -48,11 +39,7 @@ export default function TableOfContent({
             list.map(
               heading =>
                 heading.level === 2 && (
-                  <div
-                    className={cn(css.headingItem, {
-                      [css.disappear]: coverInView,
-                    })}
-                    key={heading.key}>
+                  <div className={`{css.headingItem ${css.disappear && coverInView}`} key={heading.key}>
                     <h5>
                       <div className={css.textWrapper}>
                         <a href={`#${heading.key}`}>{heading.text}</a>
@@ -61,9 +48,9 @@ export default function TableOfContent({
                   </div>
                 ),
             )}
-          <div className={cn({ [css.disappear]: coverInView })}>
+          <div className={`${css.disappear && coverInView}`}>
             {/* TODO: likes buttom renders at every scroll event */}
-            <LikeButton {...likeMeta} />
+            {/* <LikeButton {...likeMeta} /> */}
           </div>
         </div>
       </div>

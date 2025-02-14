@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getBlogPosts } from '@/db/read-markdown-files'
 import PageTitle from '@/components/page-title'
-import PageContainer from '@/app/articles/layout'
+import PageLayout from '@/app/page-layout'
 import styles from '@/styles/component-css/hero.module.scss'
 import TutorialList from '@/components/tutorial-list'
 
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
 export default function Articles() {
   let posts = getBlogPosts()
   return (
-    <PageContainer>
+    <PageLayout>
       <section className={`${styles.page} ${styles.nonLandingScreen}`}>
         <PageTitle preTitle={`${posts.length} POSTS`} title="Articles" />
-        {/* <TutorialList postList={posts.filter(finalDraft)} /> */}
+        <TutorialList postList={posts.filter(finalDraft)} />
         {/* <ViewCounter
         slug={'articles-page'}
         trackView={true}
@@ -28,7 +28,7 @@ export default function Articles() {
         isPage={true}
       /> */}
       </section>
-    </PageContainer>
+    </PageLayout>
   )
 }
 

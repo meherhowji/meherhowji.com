@@ -7,7 +7,7 @@ import DesktopNav from '@/components/desktop-nav'
 import useDimensions from '@/lib/hooks/useDimensions'
 import simplifySvgPath from '@/lib/hooks/simplifySvgPath'
 
-import css from '@/styles/component-css/footer.module.scss'
+import css from '@/components/component-css/footer.module.scss'
 
 interface FooterProps {
   showNewsletter?: boolean

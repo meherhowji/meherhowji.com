@@ -1,11 +1,10 @@
-'use client';
-import PageContainer from '@/app/articles/layout';
-import Hero from '@/components/hero';
+import PageLayout from '@/app/page-layout'
+import Hero from '@/components/hero'
 
 export default function Home() {
   return (
-    <PageContainer>
+    <PageLayout>
       <Hero />
-    </PageContainer>
-  );
+    </PageLayout>
+  )
 }

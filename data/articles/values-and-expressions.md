@@ -4,7 +4,7 @@ excerpt: Discover the power of JavaScript, the core technology of the web, bring
 publishedTime: '2023-07-15T23:14:27'
 modifiedTime: '2023-12-19T14:03:43'
 author: Meher Howji
-tags: javascript
+tags: javascript, test
 draft: 'true'
 order: 1.1
 publishTo: meherhowji.com

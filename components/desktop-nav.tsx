@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThemeSwitch from "@/components/theme-switch";
-import styles from "@/styles/component-css/desktop-nav.module.scss";
+import styles from "@/components/component-css/desktop-nav.module.scss";
 
 interface DesktopNavProps {
   onMobileNavToggle: () => void;

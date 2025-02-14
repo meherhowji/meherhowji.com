@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useState, useEffect, RefObject } from 'react'
 import Link from 'next/link'
-import css from '@/styles/component-css/tutorial-list.module.scss'
+import css from '@/components/component-css/tutorial-list.module.scss'
 
 interface TutorialTitleProps {
   title: string

@@ -1,23 +1,24 @@
 'use client'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import debounce from 'lodash.debounce'
-import Image from 'next/image'
+// import Image from 'next/image'
 import throttle from 'lodash.throttle'
 import useSWR from 'swr'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
-// import TutorialLayout from '@/layouts/tutorialLayout'
+import TutorialLayout from '@/app/articles/layout'
 import { TableOfContent, ViewCounter } from '@/components'
 import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
 import distanceToNow from '@/lib/utils/dateRelative.js'
 import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
 // import authorThumb from '@/public/assets/author/32x32.png'
 // import cn from 'classnames'
-// import css from './slug.module.scss'
+import css from '@/styles/page-css/article.module.css'
 
-export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
+export default function Post({ postDetails: p, backlinks, toc }) {
   const router = useRouter()
   const contentSectionRef = useRef(null)
   const [hasCalculated, setHasCalculated] = useState(false)
@@ -44,9 +45,7 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
   useEffect(() => {
     const calculateBodySize = throttle(() => {
       const contentSection = contentSectionRef.current
-
       if (!contentSection) return
-
       /**
        * If we haven't checked the content's height before,
        * we want to add listeners to the content area's
@@ -55,16 +54,13 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
       if (!hasCalculated) {
         const debouncedCalculation = debounce(calculateBodySize)
         const $imgs = contentSection.querySelectorAll('img')
-
         $imgs.forEach($img => {
           // If the image hasn't finished loading then add a listener
           if (!$img.complete) $img.onload = debouncedCalculation
         })
-
         // Prevent rerun of the listener attachment
         setHasCalculated(true)
       }
-
       // Set the height and offset of the content area
       setContentBounds(contentSection.getBoundingClientRect())
     }, 20)
@@ -85,32 +81,32 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
         <div>Loading</div>
       ) : (
         <div className="container">
-          <div className={cn(css.postHeader)}>
+          <div className={css.postHeader}>
             <div className="columns is-centered">
               <header className="column is-two-thirds ">
                 <h1 className="has-text-centered">{p.title}</h1>
-                <h3 className={cn('has-text-centered', css.postDetailSubtitle)}>{p.excerpt}</h3>
+                <h3 className={`has-text-centered ${css.postDetailSubtitle}`}>{p.excerpt}</h3>
                 <div className={css.postDetailMeta}>
-                  <figure className="image is-24x24">
+                  {/* <figure className={`${css.figureImage} image is-24x24`}>
                     <Image
-                      className={cn('is-rounded')}
+                      className={'is-rounded'}
                       width={24}
                       height={24}
                       quality={100}
                       src={authorThumb}
                       alt={`${p.author} avatar image`}
                     />
-                  </figure>
-                  <span rel="author" className={cn(css.authorName)}>
+                  </figure> */}
+                  <span rel="author" className={css.authorName}>
                     {p.author}
                   </span>
-                  <span>
+                  <span className={css.meta}>
                     <time className={css.readingTime}>{p.readingTime}</time>
                     <i>·</i>
                     <time className={css.authorTime}>
                       {p.modifiedTime ? distanceToNow(new Date(p.modifiedTime)) : 'Unpublished'}
                     </time>
-                    <i>·</i>
+                    <i className={css.sep}>·</i>
                     <span className={css.pageViews}>
                       <ViewCounter slug={p.slug} trackView />
                     </span>
@@ -151,13 +147,13 @@ export default function Post({ postDetails: p, backlinks, toc, prevNext }) {
   )
 }
 
-function ActualPostContent({ p, backlinks }) {
+function ActualPostContent({ p, backlinks = [] }) {
   return useMemo(() => {
     return (
       <>
         <div className="columns is-centered">
-          <div className={cn('column is-three-fifths', css.postDetailContent)}>
-            {/* <Mdx code={p.body.code} /> */}
+          <div className={`column is-three-fifths ${css.postDetailContent}`}>
+            <MDXRemote {...p} />
             <div className={css.backlinks}>
               <hr />
               <h3>Backlinks, or posts that mention this article</h3>
