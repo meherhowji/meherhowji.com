@@ -18,7 +18,6 @@ export async function getBlogPosts(): Promise<MDXRemoteSerializeResult[]> {
       const { content, data } = matter(rawContent)
       data.readingTime = calculateReadingTime(content)
       data.slug = path.basename(file, path.extname(file))
-      data.tags = data.tags.split
       const enrichedMarkdown = matter.stringify(content, data)
       // enrich ends
 

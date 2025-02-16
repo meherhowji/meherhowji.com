@@ -153,6 +153,7 @@ function ActualPostContent({ p, backlinks = [] }) {
       <>
         <div className="columns is-centered">
           <div className={`column is-three-fifths ${css.postDetailContent}`}>
+						{console.log(p, " M<M<M<M<M ")}
             <MDXRemote {...p} />
             <div className={css.backlinks}>
               <hr />

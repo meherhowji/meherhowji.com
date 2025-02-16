@@ -1,4 +1,4 @@
-import styles from '@/styles/component-css/hero.module.scss'
+import styles from '@/components/component-css/hero.module.scss'
 
 interface PageTitleProps {
   title?: string;

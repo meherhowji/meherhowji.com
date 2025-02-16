@@ -11,8 +11,8 @@
 import { Metadata } from 'next'
 import { getBlogPosts } from '@/db/read-markdown-files'
 import { getBacklinks, getHeadings, finalDraft, tagOrder } from '@/lib/utils/mdxUtils'
-import PostList from './slugList'
-import Post from './slug'
+import SlugListPage from './slugList'
+import SlugPage from './slug'
 
 type Params = {
   params: Promise<{
@@ -23,22 +23,26 @@ type Params = {
 export default async function Page(props: Params) {
   const { slug } = await props.params
   const post = await getPosts(slug)
+  console.log('🚀 ~ Page ~ post:', post)
 
-  return Array.isArray(post) ? (
-    <PostList postDetails={post} />
-  ) : (
-    <></>
-    // <Post postDetails={post} backlinks={post.backlinks} toc={post.toc} />
-  )
+  if (Array.isArray(post)) {
+    return <SlugListPage postDetails={post} />
+  } else {
+    return <></>
+  }
+
+  // return
+  // ) : ( <></>
+  //   // <SlugPage postDetails={post} backlinks={post.backlinks} toc={post.toc} />
+  // )
 }
 
 export async function getPosts(slug: string) {
   const posts = await getBlogPosts()
-  console.log('🚀 ~ getPosts ~ post:', posts)
 
   if (tagOrder.includes(slug)) {
     // Get all posts that have the tag matching the slug
-    return { post: posts.filter(post => post.frontmatter.tags.split(',').join('')[0] === slug) }
+    return posts.filter(post => post.frontmatter.tags.split(',')[0] === slug)
   }
 
   // Get the post that matches the slug
