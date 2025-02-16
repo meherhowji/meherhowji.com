@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getBlogPosts } from '@/db/read-markdown-files'
 import PageTitle from '@/components/page-title'
 import PageLayout from '@/app/page-layout'
-import styles from '@/styles/component-css/hero.module.scss'
+import styles from '@/components/component-css/hero.module.scss'
 import TutorialList from '@/components/tutorial-list'
 
 interface Post {

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DP from "@/public/assets/brand/meher-dp.jpg";
-import styles from "@/styles/component-css/hero.module.scss";
+import styles from "@/components/component-css/hero.module.scss";
 
 const Hero: React.FC = () => {
   return (
