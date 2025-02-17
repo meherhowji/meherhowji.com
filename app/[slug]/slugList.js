@@ -1,17 +1,18 @@
 import { TutorialList, Footer, HeroBanner, PageTitle } from '@/components'
+import PageLayout from '@/app/page-layout'
+import styles from '@/components/component-css/hero.module.scss'
 
 export default function SlugListPage({ postDetails }) {
-  console.log('🚀 ~ SlugListPage ~ postDetails:', postDetails)
-  return (
-    <div className="mainContainer">
-      <main className="heroContainer">
-        <PageTitle title={postDetails[0].frontmatter.tags} />
-        {/* <HeroBanner title={} /> */}
-        {/* <TutorialList postList={postDetails} /> */}
-      </main>
-      <Footer />
-    </div>
-  )
+	console.log('🚀 ~ SlugListPage ~ postDetails:', postDetails)
+	return (
+		<PageLayout>
+			<section className={`${styles.page} ${styles.nonLandingScreen}`}>
+				<PageTitle title={postDetails[0].frontmatter.tags} />
+				{/* <HeroBanner title={} /> */}
+				{/* <TutorialList postList={postDetails} /> */}
+			</section>
+			</PageLayout>
+	)
 }
 
 // <Head title={`${'test'} | Meher Howji`}/>
