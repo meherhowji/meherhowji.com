@@ -1,32 +1,33 @@
+// TODO: start working here for updating the post page
+
 'use client'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import debounce from 'lodash.debounce'
-// import Image from 'next/image'
 import throttle from 'lodash.throttle'
-import useSWR from 'swr'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-
-import TutorialLayout from '@/app/articles/layout'
 import { TableOfContent, ViewCounter } from '@/components'
-import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
-import distanceToNow from '@/lib/utils/dateRelative.js'
 import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
+import PageLayout from '@/app/page-layout'
+// import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
+// import distanceToNow from '@/lib/utils/dateRelative.js'
+// import useSWR from 'swr'
+// import Image from 'next/image'
 // import authorThumb from '@/public/assets/author/32x32.png'
 // import cn from 'classnames'
 import css from '@/styles/page-css/article.module.css'
 
-export default function Post({ postDetails: { frontmatter: fm } }) {
-	const postDetails = post.postDetail
+export default function Post({ post }) {
+  const fm = post.frontmatter
   const router = useRouter()
   const contentSectionRef = useRef(null)
   const [hasCalculated, setHasCalculated] = useState(false)
   const [contentBounds, setContentBounds] = useState({})
   // defaulting to height of 1 so that rootMargin doesn't yell
   const { height = 1 } = useWindowDimensions()
-  const { data: likesCount } = useSWR(`/api/get-likes?slug=${fm.slug}`, fetcher, swrOptions)
+  // const { data: likesCount } = useSWR(`/api/get-likes?slug=${fm.slug}`, fetcher, swrOptions)
 
   const { ref: coverImageRef, inView: coverInView } = useInView({
     threshold: 0,
@@ -71,12 +72,7 @@ export default function Post({ postDetails: { frontmatter: fm } }) {
     return () => window.removeEventListener('resize', calculateBodySize)
   }, [hasCalculated])
   return (
-    <TutorialLayout
-      title={fm.title}
-      excerpt={fm.excerpt}
-      publishedTime={fm.publishedTime}
-      modifiedTime={fm.modifiedTime}
-      tags={fm.tags}>
+    <PageLayout>
       {router.isFallback ? (
         <div>Loading</div>
       ) : (
@@ -98,18 +94,16 @@ export default function Post({ postDetails: { frontmatter: fm } }) {
                     />
                   </figure> */}
                   <span rel="author" className={css.authorName}>
-                    {/* {fm.author} */}
+                    {fm.author}
                   </span>
                   <span className={css.meta}>
-                    {/* <time className={css.readingTime}>{fm.readingTime}</time> */}
+                    <time className={css.readingTime}>{fm.readingTime}</time>
                     <i>·</i>
                     <time className={css.authorTime}>
                       {/* {fm.modifiedTime ? distanceToNow(new Date(fm.modifiedTime)) : 'Unpublished'} */}
                     </time>
                     <i className={css.sep}>·</i>
-                    <span className={css.pageViews}>
-                      {/* <ViewCounter slug={fm.slug} trackView /> */}
-                    </span>
+                    <span className={css.pageViews}>{/* <ViewCounter slug={fm.slug} trackView /> */}</span>
                     <i>·</i>
                     {/* {!(likesCount && likesCount.error) ? <span>{likesCount} Likes</span> : '-'} */}
                   </span>
@@ -137,23 +131,23 @@ export default function Post({ postDetails: { frontmatter: fm } }) {
               <article>
                 <div className={css.refMakesTocCenterSticky} ref={stickyRef} />
                 <div className={css.refMakesTocBottomSticky} ref={bottomRef} />
-                <ActualPostContent p={postDetails} backlinks={backlinks} />
+                <ActualPostContent post={post} backlinks={fm.backlinks} />
               </article>
             </div>
           </div>
         </div>
       )}
-    </TutorialLayout>
+    </PageLayout>
   )
 }
 
-function ActualPostContent({ p, backlinks = [] }) {
+function ActualPostContent({ post, backlinks = [] }) {
   return useMemo(() => {
     return (
       <>
         <div className="columns is-centered">
           <div className={`column is-three-fifths ${css.postDetailContent}`}>
-            <MDXRemote {...p} />
+            <MDXRemote {...post} />
             <div className={css.backlinks}>
               <hr />
               <h3>Backlinks, or posts that mention this article</h3>
@@ -171,5 +165,5 @@ function ActualPostContent({ p, backlinks = [] }) {
         </div>
       </>
     )
-  }, [p, backlinks])
+  }, [post, backlinks])
 }

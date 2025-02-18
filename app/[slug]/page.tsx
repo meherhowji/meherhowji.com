@@ -24,7 +24,7 @@ type Params = {
 export default async function Page(props: Params) {
   const { slug } = await props.params
   const post = await getPosts(slug)
-  return Array.isArray(post) ? <SlugListPage postList={post} /> : <SlugPage post={post} />
+  return Array.isArray(post) ? <SlugListPage posts={post} /> : <SlugPage post={post} />
 }
 
 export async function getPosts(slug: string) {
