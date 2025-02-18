@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import TutorialTitle from './tutorial-title'
 import styles from '@/components/component-css/tutorial-list.module.scss'

@@ -1,29 +1,32 @@
-'use client'
-
-import TutorialListItem from './tutorial-list-item'
-import useGroupedPosts from '@/lib/hooks/useGroupedPost'
 // import useLocalStorage from '@/lib/hooks/useLocalStorage'
+import { MDXPost } from '@/db/markdown.d'
+import { TutorialListItem } from '@/components'
 import css from '@/components/component-css/tutorial-list.module.scss'
 
-interface Post {
-  title: string
-  slug: string
-  publishedTime: string
-  excerpt: string
-  tags: string[]
-  readingTime: string
-  coverImage?: string
+function groupPosts({ postList }: { postList: MDXPost[] }) {
+  const tagOrder = ['javascript', 'blog', 'cloud', 'nextjs']
+  const postData = new Map()
+
+  tagOrder.forEach(tag => {
+    postData.set(tag, [])
+  })
+
+  postList.forEach(({ frontmatter }) => {
+    let fm = frontmatter
+    let tag: string = fm.tags.split(',')[0]
+    if (tagOrder.includes(tag)) {
+      postData.get(tag).push({ ...fm })
+    }
+  })
+
+  const dataWithValues = Array.from(postData).filter(([key, value]) => value.length)
+  const data = new Map(dataWithValues)
+  return data
 }
 
-interface GroupedPosts extends Map<string, Post[]> {}
-
-interface TutorialListProps {
-  postList: Post[]
-}
-
-const TutorialList: React.FC<TutorialListProps> = ({ postList }) => {
-  const groupedPosts: any = useGroupedPosts(postList)
-  const topics = groupedPosts?.keys()
+const TutorialList: React.FC<{ postList: MDXPost[] }> = postList => {
+  const groupedPosts = groupPosts(postList)
+  // const topics = groupedPosts?.keys()
   return (
     groupedPosts && (
       <section className={`${css.topicList}`}>

@@ -14,13 +14,14 @@ export const metadata: Metadata = {
   title: 'Articles',
 }
 
-export default function Articles() {
-  let posts = getBlogPosts()
+export default async function Articles() {
+  let posts = await getBlogPosts()
+
   return (
     <PageLayout>
       <section className={`${styles.page} ${styles.nonLandingScreen}`}>
         <PageTitle preTitle={`${posts.length} POSTS`} title="Articles" />
-        <TutorialList postList={posts.filter(finalDraft)} />
+        <TutorialList postList={posts} />
         {/* <ViewCounter
         slug={'articles-page'}
         trackView={true}
@@ -32,6 +33,7 @@ export default function Articles() {
   )
 }
 
+// TODO: plug this so that the drafts can be viewed in dev mode
 function finalDraft(post: Post): boolean {
   if (process.env.NODE_ENV === 'development') {
     return true // Assuming you want to use every post in development
