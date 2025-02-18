@@ -1,6 +1,18 @@
-function getBacklinks(allPosts, slug) {
-  const backlinkList = allPosts.filter(doc => doc.content.includes('[[' + slug))
-  return backlinkList.map(({ title, slug }) => ({ title, slug }))
+function calculateReadingTime(text: string): string {
+  const wordsPerMinute = 200
+  const wordCount = text.split(/\s+/).filter(Boolean).length
+  const readingTime = Math.ceil(wordCount / wordsPerMinute)
+  const suffix = readingTime > 1 ? 'mins' : 'min'
+  return `${readingTime} ${suffix}`
+}
+
+function getBacklinks(contentList: string[], slug: string, title: string): { title: string; slug: string }[] {
+  return contentList
+    .map(content => {
+      const backlinkMatch = content.match(new RegExp(`\\[\\[${slug}\\]\\]`, 'g')) // Check if slug appears as [[slug]]
+      return backlinkMatch ? { title, slug } : null
+    })
+    .filter((backlink): backlink is { title: string; slug: string } => backlink !== null) // Remove nulls
 }
 
 function getHeadings(post) {
@@ -55,4 +67,4 @@ function finalDraft(post) {
 // }
 const tagOrder = ['javascript', 'blog', 'cloud', 'nextjs']
 
-export { getBacklinks, finalCopy, getHeadings, slugify, finalDraft, tagOrder }
+export { getBacklinks, finalCopy, getHeadings, slugify, finalDraft, tagOrder, calculateReadingTime }

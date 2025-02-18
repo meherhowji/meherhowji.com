@@ -10,9 +10,10 @@
 }
 import { Metadata } from 'next'
 import { getBlogPosts } from '@/db/read-markdown-files'
-import { getBacklinks, getHeadings, finalDraft, tagOrder } from '@/lib/utils/mdxUtils'
+import { tagOrder } from '@/lib/utils/mdxUtils'
 import SlugListPage from './slugList'
 import SlugPage from './slug'
+import { MDXPost } from '@/db/markdown.d'
 
 type Params = {
   params: Promise<{
@@ -23,38 +24,15 @@ type Params = {
 export default async function Page(props: Params) {
   const { slug } = await props.params
   const post = await getPosts(slug)
-  console.log('🚀 ~ Page ~ post:', post)
-
-  if (Array.isArray(post)) {
-    return <SlugListPage postDetails={post} />
-  } else {
-    return <></>
-  }
-
-  // return
-  // ) : ( <></>
-  //   // <SlugPage postDetails={post} backlinks={post.backlinks} toc={post.toc} />
-  // )
+  return Array.isArray(post) ? <SlugListPage postList={post} /> : <SlugPage post={post} />
 }
 
 export async function getPosts(slug: string) {
   const posts = await getBlogPosts()
-
-  if (tagOrder.includes(slug)) {
-    // Get all posts that have the tag matching the slug
-    return posts.filter(post => post.frontmatter.tags.split(',')[0] === slug)
-  }
-
-  // Get the post that matches the slug
-  const post = posts.find(post => post.frontmatter.slug === slug)
-  if (!post) return {}
-
-  // Gather additional data for the matched post
-  return {
-    post,
-    backlinks: getBacklinks(posts, slug),
-    toc: getHeadings(post.content),
-  }
+  const isSlugATag = tagOrder.includes(slug)
+  const isSlugInTagList = (post: MDXPost) => post.frontmatter.tags.split(',').includes(slug) // render 'tags' page
+  const isSlugInFrontmatter = (post: MDXPost) => post.frontmatter.slug === slug // render 'post' page
+  return isSlugATag ? posts.filter(isSlugInTagList) : posts.find(isSlugInFrontmatter)
 }
 
 // Creates unique static page for each item in the array for static rendering
@@ -81,7 +59,7 @@ export async function generateStaticParams() {
 
 export async function generateMetaData(props: Params): Promise<Metadata> {
   const params = await props.params
-  const post = getPostBySlug(params.slug)
+  // const post = await getPostBySlug(params.slug)
 
   if (!post) {
     return notFound()

@@ -18,14 +18,15 @@ import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
 // import cn from 'classnames'
 import css from '@/styles/page-css/article.module.css'
 
-export default function Post({ postDetails: p, backlinks, toc }) {
+export default function Post({ postDetails: { frontmatter: fm } }) {
+	const postDetails = post.postDetail
   const router = useRouter()
   const contentSectionRef = useRef(null)
   const [hasCalculated, setHasCalculated] = useState(false)
   const [contentBounds, setContentBounds] = useState({})
   // defaulting to height of 1 so that rootMargin doesn't yell
   const { height = 1 } = useWindowDimensions()
-  const { data: likesCount } = useSWR(`/api/get-likes?slug=${p.slug}`, fetcher, swrOptions)
+  const { data: likesCount } = useSWR(`/api/get-likes?slug=${fm.slug}`, fetcher, swrOptions)
 
   const { ref: coverImageRef, inView: coverInView } = useInView({
     threshold: 0,
@@ -69,14 +70,13 @@ export default function Post({ postDetails: p, backlinks, toc }) {
     window.addEventListener('resize', calculateBodySize)
     return () => window.removeEventListener('resize', calculateBodySize)
   }, [hasCalculated])
-
   return (
     <TutorialLayout
-      title={p.title}
-      excerpt={p.excerpt}
-      publishedTime={p.publishedTime}
-      modifiedTime={p.modifiedTime}
-      tags={p.tags}>
+      title={fm.title}
+      excerpt={fm.excerpt}
+      publishedTime={fm.publishedTime}
+      modifiedTime={fm.modifiedTime}
+      tags={fm.tags}>
       {router.isFallback ? (
         <div>Loading</div>
       ) : (
@@ -84,8 +84,8 @@ export default function Post({ postDetails: p, backlinks, toc }) {
           <div className={css.postHeader}>
             <div className="columns is-centered">
               <header className="column is-two-thirds ">
-                <h1 className="has-text-centered">{p.title}</h1>
-                <h3 className={`has-text-centered ${css.postDetailSubtitle}`}>{p.excerpt}</h3>
+                <h1 className="has-text-centered">{fm.title}</h1>
+                <h3 className={`has-text-centered ${css.postDetailSubtitle}`}>{fm.excerpt}</h3>
                 <div className={css.postDetailMeta}>
                   {/* <figure className={`${css.figureImage} image is-24x24`}>
                     <Image
@@ -94,24 +94,24 @@ export default function Post({ postDetails: p, backlinks, toc }) {
                       height={24}
                       quality={100}
                       src={authorThumb}
-                      alt={`${p.author} avatar image`}
+                      alt={`${fm.author} avatar image`}
                     />
                   </figure> */}
                   <span rel="author" className={css.authorName}>
-                    {p.author}
+                    {/* {fm.author} */}
                   </span>
                   <span className={css.meta}>
-                    <time className={css.readingTime}>{p.readingTime}</time>
+                    {/* <time className={css.readingTime}>{fm.readingTime}</time> */}
                     <i>·</i>
                     <time className={css.authorTime}>
-                      {p.modifiedTime ? distanceToNow(new Date(p.modifiedTime)) : 'Unpublished'}
+                      {/* {fm.modifiedTime ? distanceToNow(new Date(fm.modifiedTime)) : 'Unpublished'} */}
                     </time>
                     <i className={css.sep}>·</i>
                     <span className={css.pageViews}>
-                      <ViewCounter slug={p.slug} trackView />
+                      {/* <ViewCounter slug={fm.slug} trackView /> */}
                     </span>
                     <i>·</i>
-                    {!(likesCount && likesCount.error) ? <span>{likesCount} Likes</span> : '-'}
+                    {/* {!(likesCount && likesCount.error) ? <span>{likesCount} Likes</span> : '-'} */}
                   </span>
                 </div>
               </header>
@@ -122,22 +122,22 @@ export default function Post({ postDetails: p, backlinks, toc }) {
             <div ref={contentSectionRef}>
               <aside className={css.toc}>
                 <TableOfContent
-                  list={toc}
+                  list={fm.toc}
                   contentBounds={contentBounds}
                   inView={inView}
                   bottomInView={bottomInView}
                   coverInView={coverInView}
-                  likeMeta={{
-                    currentLikes: likesCount,
-                    postSlug: p.slug,
-                  }}
+                  // likeMeta={{
+                  //   currentLikes: likesCount,
+                  //   postSlug: fm.slug,
+                  // }}
                 />
               </aside>
 
               <article>
                 <div className={css.refMakesTocCenterSticky} ref={stickyRef} />
                 <div className={css.refMakesTocBottomSticky} ref={bottomRef} />
-                <ActualPostContent p={p} backlinks={backlinks} />
+                <ActualPostContent p={postDetails} backlinks={backlinks} />
               </article>
             </div>
           </div>
@@ -153,7 +153,6 @@ function ActualPostContent({ p, backlinks = [] }) {
       <>
         <div className="columns is-centered">
           <div className={`column is-three-fifths ${css.postDetailContent}`}>
-						{console.log(p, " M<M<M<M<M ")}
             <MDXRemote {...p} />
             <div className={css.backlinks}>
               <hr />

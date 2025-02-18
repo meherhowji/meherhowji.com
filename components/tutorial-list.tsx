@@ -1,10 +1,9 @@
-// import useLocalStorage from '@/lib/hooks/useLocalStorage'
 import { MDXPost } from '@/db/markdown.d'
 import { TutorialListItem } from '@/components'
 import css from '@/components/component-css/tutorial-list.module.scss'
+import { tagOrder } from '@/lib/utils/mdxUtils'
 
 function groupPosts({ postList }: { postList: MDXPost[] }) {
-  const tagOrder = ['javascript', 'blog', 'cloud', 'nextjs']
   const postData = new Map()
 
   tagOrder.forEach(tag => {

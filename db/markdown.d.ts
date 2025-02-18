@@ -13,6 +13,8 @@ export type PostFrontmatter = {
   slug: string
   tags: string
   title: string
+  toc: Object[]
+  backlinks: { title: string; slug: string }[]
 }
 
 export type MDXPost = MDXRemoteSerializeResult<Record<string, unknown>, PostFrontmatter>
