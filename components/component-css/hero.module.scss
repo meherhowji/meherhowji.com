@@ -3,32 +3,17 @@
 
 .hero {
   @include mixins.container;
-
   display: grid;
   position: relative;
   flex: 1;
   transition: padding 500ms var(--ease-out-quad);
   grid-template-columns: 55% auto;
 
-  @include media.fullhd {
-    padding-block: 150px;
-  }
-
-  @include media.widescreen-only {
-    padding-block: 150px;
-  }
-
-  @include media.desktop-only {
-    padding-block: 150px;
-  }
-
-  @include media.tablet-only {
-    padding-block: 80px;
+  @include media.tablet {
     grid-template-columns: 55% auto;
   }
 
   @include media.mobile {
-    padding-top: 60px;
     grid-template-columns: 100%;
   }
 
@@ -64,7 +49,7 @@
         text-align: center !important;
       }
 
-      @include media.tablet-only {
+      @include media.tablet {
         font-size: 36px !important;
       }
 
@@ -93,7 +78,7 @@
         text-align: center !important;
       }
 
-      @include media.tablet-only {
+      @include media.tablet {
         font-size: 24px !important;
       }
 
@@ -121,7 +106,7 @@
         margin-bottom: 0;
       }
 
-      @include media.tablet-only {
+      @include media.tablet {
         margin-top: 20px;
         font-size: 13px !important;
         line-height: 18px;
@@ -157,7 +142,7 @@
 }
 
 .nonLandingScreen {
-  padding-block: 80px;
+  // padding-block: 80px;
 
   @include media.mobile {
     padding-top: 60px;
@@ -167,12 +152,12 @@
 
 .page {
   @include mixins.container;
-	flex: 1 1;
+  flex: 1 1;
 
   .pageTitle {
     display: flex;
     flex-direction: column;
-		padding: 10px 0 100px 0;
-		text-transform: capitalize;
+    padding: 10px 0 100px 0;
+    text-transform: capitalize;
   }
 }

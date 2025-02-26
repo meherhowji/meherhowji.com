@@ -1,17 +1,17 @@
-import Link from "next/link";
-import styles from "@/components/component-css/mobile-nav.module.scss";
+import Link from 'next/link'
+import styles from '@/components/component-css/mobile-nav.module.scss'
 
 interface MobileNavProps {
-  showOnToggle: boolean;
+  showOnToggle: boolean
 }
-
+// FIXME: When a link is clicked, the page should load under the main section and not reload the page
+// FIXME: When on the same page, the link to the current page should be closed after second click
 const MobileNav: React.FC<MobileNavProps> = ({ showOnToggle }) => {
   return (
     <nav
-      className={`${styles.mobileNav} ${showOnToggle ? styles.slideDownOnMobile : styles.slideUpOnMobile}`}
+      className={[styles.mobileNav, showOnToggle ? styles.slideDownOnMobile : styles.slideUpOnMobile].join(' ')}
       role="navigation"
-      aria-label="dropdown navigation"
-    >
+      aria-label="dropdown navigation">
       <div className={`${styles.socialMedia}`}>
         <Link href="https://instagram.com/meherranjan">
           <svg width="15px" height="15px" role="img" aria-label="instagram icon">
@@ -45,7 +45,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ showOnToggle }) => {
         <Link href="/newsletter">Newsletter</Link>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default MobileNav;
+export default MobileNav

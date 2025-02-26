@@ -1,6 +1,7 @@
+// the container is used separately because we want a full width footer svg wave
 @mixin container {
   max-width: var(--max-width);
-	width: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 

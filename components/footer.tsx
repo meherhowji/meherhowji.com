@@ -26,21 +26,21 @@ interface SvgWaveProps {
 
 const Footer: React.FC<FooterProps> = ({ showNewsletter = true }) => {
   const footerRef = useRef<HTMLDivElement>(null)
-  const parentAttr = useDimensions(footerRef)
+  const attrs = useDimensions(footerRef)
 
   return (
     <>
       <footer className={css.footer} ref={footerRef}>
-        {parentAttr.height && <SvgWave parentAttr={{ ...parentAttr }} />}
+        {attrs.height ? <SvgWave parentAttr={{ ...attrs }} /> : null}
         <div className={css.container}>
-          <div className={css.footerSubTitle}>
+          <div>
             <div className={css.flex}>
               <Image src="./assets/brand/logo.svg" alt="Meher+Howji logo" width="36" height="36" priority={true} />
               <SocialBar size={16} />
             </div>
-            <div>
+            <div className={css.footerSubTitle}>
               <p className={css.siteTech}>
-                <span>Built with NextJS, Supabase & vanilla CSS grids+flexbox. Learn </span>
+                <span>Built with NextJS, Supabase & plain-CSS Grids. Learn </span>
                 <Link href="/how-i-built-my-website">how.</Link>
               </p>
               <p className={css.copyright}>Meher Howji © {new Date().getFullYear()}</p>
@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({ showNewsletter = true }) => {
           </div>
 
           <div className={css.footerNav}>
-            <DesktopNav onFooter={true} onMobileNavToggle={function (): void {}} />
+            <DesktopNav isFooter={true} onMobileNavToggle={function (): void {}} />
           </div>
         </div>
       </footer>

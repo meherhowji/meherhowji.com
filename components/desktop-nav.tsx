@@ -1,17 +1,17 @@
-import Image from "next/image";
-import Link from "next/link";
-import ThemeSwitch from "@/components/theme-switch";
-import styles from "@/components/component-css/desktop-nav.module.scss";
+import Image from 'next/image'
+import Link from 'next/link'
+import ThemeSwitch from '@/components/theme-switch'
+import styles from '@/components/component-css/desktop-nav.module.scss'
 
 interface DesktopNavProps {
-  onMobileNavToggle: () => void;
-  onFooter: boolean;
+  onMobileNavToggle: () => void
+  isFooter: boolean
 }
 
-const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, onFooter }) => {
+const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, isFooter }) => {
   return (
     <nav className={`${styles.navbar}`}>
-      {!onFooter && (
+      {!isFooter && (
         <div className={`${styles.navbarBrand}`}>
           <Link href="/" passHref>
             <Image
@@ -33,7 +33,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, onFooter }) 
         </div>
       )}
 
-      <div className={`${styles.navbarMenuList} ${onFooter ? styles.alwaysLight : ""}`}>
+      <div className={`${styles.navbarMenuList} ${isFooter ? styles.alwaysLight : ''}`}>
         <Link href="/articles" passHref>
           <button>
             <span className={styles.icon}>
@@ -67,7 +67,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, onFooter }) 
           </button>
         </Link>
 
-        {!onFooter && (
+        {!isFooter && (
           <>
             <span className={styles.menuSep}>|</span>
             <Link href="/signup" passHref>
@@ -87,7 +87,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, onFooter }) 
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default DesktopNav;
+export default DesktopNav

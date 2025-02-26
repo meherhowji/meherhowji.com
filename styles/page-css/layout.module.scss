@@ -1,0 +1,93 @@
+@use '@/styles/mixins/media.scss';
+@use '@/styles/mixins/mixins.scss';
+
+$anim-duration: 560ms;
+
+// TODO: clean up
+
+.bodyContainer {
+  animation: unroundRound $anim-duration ease;
+}
+
+.pageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform $anim-duration cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
+
+  padding: 50px 0;
+
+  @include media.mobile {
+    &:after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0px;
+      width: 100%;
+      height: 20px;
+      background: var(--background);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: #0003 0px -20px 40px;
+    }
+  }
+
+  &.slideDownOnMobile {
+    position: fixed;
+
+    @include media.mobile {
+      transform: translateY(525px);
+      touch-action: none;
+      position: fixed;
+      width: 100%;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -21px;
+      left: 0px;
+      right: 0px;
+      margin: 0px auto;
+      width: calc(-40px + 100vw);
+      height: 1px;
+      background: radial-gradient(174px at 50.14% 100.05%, #ffffff40 0%, #ffffff05 100%);
+    }
+  }
+
+  @include media.mobile {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+}
+
+.newsletterHero {
+  & > div:first-child {
+    margin-top: -90px;
+  }
+}
+
+@keyframes roundUnround {
+  0% {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  100% {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+}
+
+@keyframes unroundRound {
+  0% {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  100% {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+}
+

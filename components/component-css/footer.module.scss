@@ -1,9 +1,9 @@
-@use "@/styles/mixins/mixins.scss";
+@use '@/styles/mixins/mixins.scss';
 
 .footer {
   position: relative;
   padding-top: 200px;
-  padding-bottom: 50px;
+  padding-bottom: 50px; // same as padding top of the header
   width: 100%;
 
   .container {
@@ -27,63 +27,54 @@
 
   .flex {
     display: flex;
-		margin-bottom: 25px;
+    margin-bottom: 25px;
   }
 
   .footerSubTitle {
     user-select: none;
 
     > p {
-      margin-bottom: 9px;
-    }
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.5) !important;
+      font-size: 0.7rem;
 
-    p {
-      color: rgba(255, 255, 255, 0.7) !important;
-      font-size: 0.8rem;
+      a {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
     }
   }
 
-  .strong {
-    font-weight: 600;
+  .waveWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    transform-origin: left top 0px;
+    clip-path: url('#wave');
+    background: linear-gradient(-25deg, rgb(33, 13, 84) 63%, rgb(22, 7, 61) 100%);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .socialbarContainer {
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    margin-left: 20px;
 
     a {
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.7);
-    }
-  }
-}
-
-.socialbarContainer {
-  margin-left: 50px;
-  display: flex;
-  -moz-box-align: center;
-  align-items: center;
-  margin-left: 50px;
-
-  a {
-    margin-left: 14px;
-    opacity: 0.5;
-    transition: opacity 0.4s var(--ease-out-quad);
-
-    &:hover {
-      opacity: 1;
+      margin-left: 24px;
+      opacity: 0.5;
       transition: opacity 0.4s var(--ease-out-quad);
+
+      &:hover {
+        opacity: 1;
+        transition: opacity 0.4s var(--ease-out-quad);
+      }
     }
-  }
-}
-
-.waveWrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  transform-origin: left top 0px;
-  clip-path: url("#wave");
-  background: linear-gradient(-25deg, rgb(33, 13, 84) 63%, rgb(22, 7, 61) 100%);
-
-  svg {
-    width: 100%;
-    height: 100%;
   }
 }

@@ -10,7 +10,6 @@ import throttle from 'lodash.throttle'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { TableOfContent, ViewCounter } from '@/components'
 import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
-import PageLayout from '@/app/page-layout'
 // import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
 // import distanceToNow from '@/lib/utils/dateRelative.js'
 // import useSWR from 'swr'
@@ -72,11 +71,11 @@ export default function Post({ post }) {
     return () => window.removeEventListener('resize', calculateBodySize)
   }, [hasCalculated])
   return (
-    <PageLayout>
+    <>
       {router.isFallback ? (
         <div>Loading</div>
       ) : (
-        <div className="container">
+        <section className={`${styles.page} ${styles.nonLandingScreen}`}>
           <div className={css.postHeader}>
             <div className="columns is-centered">
               <header className="column is-two-thirds ">
@@ -112,7 +111,7 @@ export default function Post({ post }) {
             </div>
           </div>
 
-          <div className="pos-rel">
+          <div>
             <div ref={contentSectionRef}>
               <aside className={css.toc}>
                 <TableOfContent
@@ -135,9 +134,9 @@ export default function Post({ post }) {
               </article>
             </div>
           </div>
-        </div>
+        </section>
       )}
-    </PageLayout>
+    </>
   )
 }
 

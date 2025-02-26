@@ -1,4 +1,4 @@
-@use "@/styles/mixins/media.scss";
+@use '@/styles/mixins/media.scss';
 
 .mobileNav {
   position: fixed;
@@ -8,6 +8,10 @@
   z-index: 0;
   padding: 60px 0px;
   height: 100vh;
+
+  @include media.desktop {
+    display: none;
+  }
 
   &.slideDownOnMobile {
     background: #1b213a;
@@ -38,7 +42,7 @@
       padding: 0;
       margin-left: 22px;
       margin-right: 22px;
-			color: var(--social-media-svg-fill);
+      color: var(--social-media-svg-fill);
 
       &:first-child {
         margin-left: 0;
@@ -76,12 +80,12 @@
       display: inline-block;
       margin: 0px auto 5px;
       font-weight: 500;
-			font-family: var(--font-lato);
+      font-family: var(--font-lato);
       padding: 20px 15px;
-			font-size: 14px;
-    	opacity: 0;
-			transform: translateY(-14px);
-			transition: all 0.7s cubic-bezier(0.32, 0.08, 0.24, 1) 300ms;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(-14px);
+      transition: all 0.7s cubic-bezier(0.32, 0.08, 0.24, 1) 300ms;
     }
   }
 }
@@ -97,8 +101,8 @@
     opacity: 0.5;
   }
 
-	.menuList a{
+  .menuList a {
     transform: translateY(0px);
-		opacity: 1;
-	}
+    opacity: 1;
+  }
 }

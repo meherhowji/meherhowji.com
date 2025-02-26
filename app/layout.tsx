@@ -1,7 +1,13 @@
-import type { Metadata } from 'next'
+'use client'
+import { useState } from 'react'
+import { useSwipeable } from 'react-swipeable'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
+import DesktopNav from '@/components/desktop-nav'
+import MobileNav from '@/components/mobile-nav'
+import Footer from '@/components/footer'
 import '@/styles/globals.scss'
+import styles from '@/styles/page-css/layout.module.scss'
 
 const inter = Inter({ subsets: ['latin'], weight: ['300', '500', '700', '900'], variable: '--font-inter' })
 
@@ -10,49 +16,47 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isComponentLoaded, setIsComponentLoaded] = useState(true)
+
+  // Toggles the state of the mobile navigation menu
+  function toggleMobileNav() {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+    if (isComponentLoaded) {
+      setIsComponentLoaded(false)
+    }
+  }
+
+  const swipeHandlers = useSwipeable({
+    onSwipedUp: () => (isMobileMenuOpen ? toggleMobileNav() : null),
+  })
+
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* TODO: attr ^ suppresses error as ThemeProvider is a client comp but this file isnt, update package */}
-      {/* 
-			this is generated dynamically by manifest.ts in the app directory
-			<link rel="manifest" href="/manifest.webmanifest" /> 
-			*/}
       <link rel="shortcut icon" href="/favicons/favicon.ico" sizes="any" />
-      <body className={`${inter.className} bodyContainer`}>
+      <body className={`${inter.className} ${styles.bodyContainer}`}>
         <ThemeProvider themes={['light', 'dark']} defaultTheme="dark">
-          {children}
+          <div className="boxes-here">
+            {/* Header */}
+            <header>
+              <MobileNav showOnToggle={isMobileMenuOpen} />
+              <DesktopNav onMobileNavToggle={toggleMobileNav} isFooter={false} />
+            </header>
+
+            {/* Main Container */}
+            <main
+              {...swipeHandlers}
+              className={[styles.pageContainer, isMobileMenuOpen && styles.slideDownOnMobile].join(' ')}>
+              <>{children}</>
+            </main>
+
+            {/* Footer */}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
   )
 }
 
-// TODO: complete the metadata
-export const metadata: Metadata = {
-  metadataBase: new URL('https://meherhowji.com'),
-  title: {
-    default: 'Meher Howji',
-    template: '%s | Meher Howji',
-  },
-  description:
-    "I am Meher. I'm a YouTuber, Udemy Trainer & a technologist. On this site I share courses and articles that will help you build web apps with a deeper insight into web technologies.",
-  generator: 'Next.js',
-  creator: 'Meher Howji',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      // -1, google chooses the length that it believes is effective to help users discover your content
-      'max-video-preview': -1,
-      'max-snippet': -1,
-    },
-  },
-}
+// why SuppressHydrationWarning? - https://github.com/shadcn-ui/ui/issues/5552

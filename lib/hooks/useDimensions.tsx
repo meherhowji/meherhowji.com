@@ -1,30 +1,31 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from 'react'
 
-export default function useDimensions(myRef: React.RefObject<HTMLElement>) {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+export default function useDimensions(myRef: React.RefObject<HTMLElement | null>) {
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
 
   const handleResize = useCallback(() => {
     if (myRef.current) {
-      setWidth(myRef.current.offsetWidth);
-      setHeight(myRef.current.offsetHeight);
+      setWidth(myRef.current.offsetWidth)
+      setHeight(myRef.current.offsetHeight)
     }
-  }, [myRef]);
+  }, [myRef])
 
   useEffect(() => {
-    if (document.readyState === "complete") {
-      handleResize();
-    } else {
-      window.addEventListener("load", handleResize);
-    }
+    const element = myRef.current
+    if (!element) return // wait until the element is available
 
-    window.addEventListener("resize", handleResize);
+    // Create a new ResizeObserver that calls handleResize whenever the element's size changes.
+    const resizeObserver = new ResizeObserver(() => handleResize())
+    resizeObserver.observe(element)
+
+    // Optionally, call handleResize once to set initial dimensions.
+    handleResize()
 
     return () => {
-      window.removeEventListener("load", handleResize);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [myRef, handleResize]);
+      resizeObserver.disconnect()
+    }
+  }, [myRef, handleResize])
 
-  return { width, height };
+  return { width, height }
 }

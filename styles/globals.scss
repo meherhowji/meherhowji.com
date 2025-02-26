@@ -1,6 +1,7 @@
-@use "sass:meta";
-@import "./normalise.css";
-@include meta.load-css("theme/theme-variables.scss");
+@use 'sass:meta';
+@use '@/styles/mixins/mixins.scss';
+@import './normalise.css';
+@include meta.load-css('theme/theme-variables.scss');
 
 :root {
   cursor: default;
@@ -25,17 +26,25 @@
 }
 
 html {
-  min-height: 100%;
   height: 100%;
-  background-color: var(--background);
+
+  body {
+    height: 100%;
+    background-color: var(--background);
+
+    header {
+      padding: 50px 0;
+    }
+
+    .boxes-here {
+      position: relative;
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+  }
 }
 
-body {
-  background-repeat: no-repeat;
-  background-color: var(--background);
-  height: 100%;
-}
-
-@include meta.load-css("layout.scss");
-@include meta.load-css("theme/typography.scss");
-@include meta.load-css("utilities/overrides.scss");
+@include meta.load-css('theme/typography.scss');
+@include meta.load-css('theme/code-typography.scss');
+@include meta.load-css('utilities/overrides.scss');
