@@ -10,13 +10,13 @@ import throttle from 'lodash.throttle'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { TableOfContent, ViewCounter } from '@/components'
 import useWindowDimensions from '@/lib/hooks/useWindowDimensions'
+import css from '@/styles/page-css/article.module.scss'
+
 // import { fetcher, swrOptions } from '@/lib/utils/fetcher.js'
 // import distanceToNow from '@/lib/utils/dateRelative.js'
 // import useSWR from 'swr'
 // import Image from 'next/image'
 // import authorThumb from '@/public/assets/author/32x32.png'
-// import cn from 'classnames'
-import css from '@/styles/page-css/article.module.css'
 
 export default function Post({ post }) {
   const fm = post.frontmatter
@@ -70,19 +70,19 @@ export default function Post({ post }) {
     window.addEventListener('resize', calculateBodySize)
     return () => window.removeEventListener('resize', calculateBodySize)
   }, [hasCalculated])
+
   return (
     <>
       {router.isFallback ? (
         <div>Loading</div>
       ) : (
-        <section className={`${styles.page} ${styles.nonLandingScreen}`}>
-          <div className={css.postHeader}>
-            <div className="columns is-centered">
-              <header className="column is-two-thirds ">
-                <h1 className="has-text-centered">{fm.title}</h1>
-                <h3 className={`has-text-centered ${css.postDetailSubtitle}`}>{fm.excerpt}</h3>
-                <div className={css.postDetailMeta}>
-                  {/* <figure className={`${css.figureImage} image is-24x24`}>
+        <section className={css.container}>
+          {/* className={`${styles.page} ${styles.nonLandingScreen}`}> */}
+          <header className="column is-two-thirds ">
+            <h1 className="has-text-centered">{fm.title}</h1>
+            <h3 className={`has-text-centered ${css.postDetailSubtitle}`}>{fm.excerpt}</h3>
+            <div className={css.postDetailMeta}>
+              {/* <figure className={`${css.figureImage} image is-24x24`}>
                     <Image
                       className={'is-rounded'}
                       width={24}
@@ -92,26 +92,24 @@ export default function Post({ post }) {
                       alt={`${fm.author} avatar image`}
                     />
                   </figure> */}
-                  <span rel="author" className={css.authorName}>
-                    {fm.author}
-                  </span>
-                  <span className={css.meta}>
-                    <time className={css.readingTime}>{fm.readingTime}</time>
-                    <i>·</i>
-                    <time className={css.authorTime}>
-                      {/* {fm.modifiedTime ? distanceToNow(new Date(fm.modifiedTime)) : 'Unpublished'} */}
-                    </time>
-                    <i className={css.sep}>·</i>
-                    <span className={css.pageViews}>{/* <ViewCounter slug={fm.slug} trackView /> */}</span>
-                    <i>·</i>
-                    {/* {!(likesCount && likesCount.error) ? <span>{likesCount} Likes</span> : '-'} */}
-                  </span>
-                </div>
-              </header>
+              <span rel="author" className={css.authorName}>
+                {fm.author}
+              </span>
+              <span className={css.meta}>
+                <time className={css.readingTime}>{fm.readingTime}</time>
+                <i>·</i>
+                <time className={css.authorTime}>
+                  {/* {fm.modifiedTime ? distanceToNow(new Date(fm.modifiedTime)) : 'Unpublished'} */}
+                </time>
+                <i className={css.sep}>·</i>
+                <span className={css.pageViews}>{/* <ViewCounter slug={fm.slug} trackView /> */}</span>
+                <i>·</i>
+                {/* {!(likesCount && likesCount.error) ? <span>{likesCount} Likes</span> : '-'} */}
+              </span>
             </div>
-          </div>
+          </header>
 
-          <div>
+          <section>
             <div ref={contentSectionRef}>
               <aside className={css.toc}>
                 <TableOfContent
@@ -133,7 +131,7 @@ export default function Post({ post }) {
                 <ActualPostContent post={post} backlinks={fm.backlinks} />
               </article>
             </div>
-          </div>
+          </section>
         </section>
       )}
     </>

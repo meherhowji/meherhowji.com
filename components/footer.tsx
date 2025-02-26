@@ -95,6 +95,7 @@ const SocialBar: React.FC<SocialBarProps> = ({ size }) => {
   )
 }
 
+// TODO: turn this into a terrain generator
 const SvgWave: React.FC<SvgWaveProps> = ({ parentAttr }) => {
   const [perlinLine, setPerlinLine] = useState<string>('')
 

@@ -1,14 +1,19 @@
-@use "@/styles/mixins/media.scss";
+// TODO: Start here and make the landing page mobile
+
+@use '@/styles/mixins/media.scss';
 @use '@/styles/mixins/mixins.scss';
 
 $menuItemsGap: 20px;
 
 .navbar {
-	@include mixins.container;
   display: grid;
-	width: 100%;
+  width: 100%;
   grid-template-columns: 30% 70%;
   justify-content: space-between;
+
+  &.withContainer {
+    @include mixins.container;
+  }
 
   @include media.mobile {
     grid-template-columns: 100%;
@@ -109,10 +114,10 @@ $menuItemsGap: 20px;
           transform: translateY(-1px);
         }
 
-				span {
-					// currentcolor for svg comes from here
-					color: var(--primary);
-				}
+        span {
+          // currentcolor for svg comes from here
+          color: var(--primary);
+        }
       }
 
       .icon,

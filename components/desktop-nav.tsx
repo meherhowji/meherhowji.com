@@ -10,7 +10,7 @@ interface DesktopNavProps {
 
 const DesktopNav: React.FC<DesktopNavProps> = ({ onMobileNavToggle, isFooter }) => {
   return (
-    <nav className={`${styles.navbar}`}>
+    <nav className={`${styles.navbar} ${!isFooter && styles.withContainer}`}>
       {!isFooter && (
         <div className={`${styles.navbarBrand}`}>
           <Link href="/" passHref>
