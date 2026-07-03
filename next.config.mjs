@@ -6,6 +6,17 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const nextConfig = {
+  // Turbopack is the default bundler in Next 16 (dev + build). SVGR is wired here so
+  // `import Icon from './x.svg'` resolves to a React component. The webpack() block below
+  // is kept only as a fallback for `--webpack` runs; it is ignored under Turbopack.
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
