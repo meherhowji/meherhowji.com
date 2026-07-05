@@ -41,7 +41,7 @@ export async function generateStaticParams() {
   // an object return like this {params: { slug: 'this-keyword'}} generates a page
   const blogPosts = await getBlogPosts()
   let posts = blogPosts
-    .filter(post => post.frontmatter.draft === 'false')
+    .filter(post => !post.frontmatter.draft)
     .map(post => ({
       slug: post.frontmatter.slug,
     }))

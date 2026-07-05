@@ -1,75 +1,74 @@
 import fs from 'fs'
 import path from 'path'
+import { cache } from 'react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote'
 import matter, { GrayMatterFile } from 'gray-matter'
-import { PostFrontmatter, MDXPost } from '@/db/markdown.d'
+import { PostFrontmatter, PostMeta, MDXPost } from '@/db/markdown.d'
 import { getBacklinks, getHeadings, calculateReadingTime } from '@/lib/utils/mdxUtils'
 
 // Constants
 const MARKDOWN_BLOG_POSTS_PATH = 'data/articles'
 const ROOT_FOLDER = path.join(process.cwd(), MARKDOWN_BLOG_POSTS_PATH)
 
-// Read all Markdown files
-const getMarkdownFiles = (): string[] => fs.readdirSync(ROOT_FOLDER).filter(file => path.extname(file) === '.md')
+type ParsedPost = { fileName: string; parsed: GrayMatterFile<string>; raw: string }
 
-// Read and parse a single Markdown file
-const readMarkdownFile = (filePath: string): { parsed: GrayMatterFile<string>; raw: string } => {
-  const rawContent = fs.readFileSync(filePath, 'utf-8')
-  return { parsed: matter(rawContent) as GrayMatterFile<string>, raw: rawContent }
-}
+// Read + parse every Markdown file exactly once per render pass (cache() dedupes
+// the repeated calls from the home / list / slug pages and generateStaticParams).
+const readAllParsed = cache((): ParsedPost[] => {
+  const files = fs.readdirSync(ROOT_FOLDER).filter(file => path.extname(file) === '.md')
+  return files.map(fileName => {
+    const raw = fs.readFileSync(path.join(ROOT_FOLDER, fileName), 'utf-8')
+    return { fileName, parsed: matter(raw) as GrayMatterFile<string>, raw }
+  })
+})
 
-// Enrich frontmatter with additional metadata
-const enrichFrontmatter = (
-  fileName: string,
-  parsed: GrayMatterFile<string>,
-  allFilesRaw: string[],
-): PostFrontmatter => {
-  let data = parsed.data as PostFrontmatter
-  let content = parsed.content
+// Frontmatter stores draft as the string 'true' / 'false'; normalize to a real boolean.
+const normalizeDraft = (value: unknown): boolean =>
+  typeof value === 'boolean' ? value : String(value).trim().toLowerCase() === 'true'
 
+// Enrich raw frontmatter with derived metadata (reading time, slug, toc, backlinks).
+const enrichFrontmatter = (fileName: string, parsed: GrayMatterFile<string>, allFilesRaw: string[]): PostMeta => {
+  const data = parsed.data as PostFrontmatter
   return {
     ...data,
-    readingTime: calculateReadingTime(content),
+    draft: normalizeDraft(data.draft),
+    readingTime: calculateReadingTime(parsed.content),
     slug: path.basename(fileName, path.extname(fileName)),
-    toc: getHeadings(content),
-    backlinks: getBacklinks(allFilesRaw, data.slug, data.title), // Pass raw markdown files
+    toc: getHeadings(parsed.content),
+    backlinks: getBacklinks(allFilesRaw, data.slug, data.title),
   }
 }
 
-// Process a single Markdown file and return serialized MDX content
-const processMarkdownFile = async (
-  fileName: string,
-  parsed: GrayMatterFile<string>,
-  allFilesRaw: string[],
-): Promise<MDXPost | null> => {
-  const enrichedFrontmatter = enrichFrontmatter(fileName, parsed, allFilesRaw)
-  const enrichedMarkdown = matter.stringify(parsed.content, enrichedFrontmatter)
-  const processedMD = (await serialize(enrichedMarkdown, { parseFrontmatter: true })) as MDXRemoteSerializeResult<
+// List/index metadata for every published post — no MDX serialization.
+export const getPostsMeta = cache((): PostMeta[] => {
+  const all = readAllParsed()
+  const allFilesRaw = all.map(({ raw }) => raw)
+  return all.map(({ fileName, parsed }) => enrichFrontmatter(fileName, parsed, allFilesRaw)).filter(meta => !meta.draft)
+})
+
+// Serialize a single post's body (only the one being rendered pays this cost).
+export const getPostBySlug = cache(async (slug: string): Promise<MDXPost | null> => {
+  const all = readAllParsed()
+  const target = all.find(({ fileName }) => path.basename(fileName, path.extname(fileName)) === slug)
+  if (!target) return null
+
+  const allFilesRaw = all.map(({ raw }) => raw)
+  const frontmatter = enrichFrontmatter(target.fileName, target.parsed, allFilesRaw)
+  if (frontmatter.draft) return null
+
+  const compiled = (await serialize(target.parsed.content)) as MDXRemoteSerializeResult<
     Record<string, unknown>,
     PostFrontmatter
   >
-  return enrichedFrontmatter.draft === 'false' ? processedMD : null
-}
+  return { ...compiled, frontmatter }
+})
 
-// Main function to fetch blog posts
-export async function getBlogPosts(): Promise<MDXPost[]> {
-  const markdownFiles = getMarkdownFiles()
-
-  // Read all files and store both parsed frontmatter and raw markdown
-  const allMarkdownData = markdownFiles.map(fileName => {
-    const filePath = path.join(ROOT_FOLDER, fileName)
-    return { fileName, ...readMarkdownFile(filePath) }
-  })
-
-  // Extract raw markdown for all posts
-  const allFilesRaw = allMarkdownData.map(({ raw }) => raw)
-
-  // Process each post with access to all raw markdown content
+// Full serialized post list (published only). Prefer getPostsMeta() for list surfaces.
+export const getBlogPosts = cache(async (): Promise<MDXPost[]> => {
+  const all = readAllParsed()
   const posts = await Promise.all(
-    allMarkdownData.map(({ fileName, parsed }) => processMarkdownFile(fileName, parsed, allFilesRaw)),
+    all.map(({ fileName }) => getPostBySlug(path.basename(fileName, path.extname(fileName)))),
   )
-
-  // Remove null values
   return posts.filter((post): post is MDXPost => post !== null)
-}
+})
