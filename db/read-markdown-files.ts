@@ -6,6 +6,7 @@ import { type MDXRemoteSerializeResult } from 'next-mdx-remote'
 import matter, { GrayMatterFile } from 'gray-matter'
 import { PostFrontmatter, PostMeta, MDXPost } from '@/db/markdown.d'
 import { getBacklinks, getHeadings, calculateReadingTime } from '@/lib/utils/mdxUtils'
+import { mdxOptions } from '@/db/mdx-options'
 
 // Constants
 const MARKDOWN_BLOG_POSTS_PATH = 'data/articles'
@@ -57,7 +58,7 @@ export const getPostBySlug = cache(async (slug: string): Promise<MDXPost | null>
   const frontmatter = enrichFrontmatter(target.fileName, target.parsed, allFilesRaw)
   if (frontmatter.draft) return null
 
-  const compiled = (await serialize(target.parsed.content)) as MDXRemoteSerializeResult<
+  const compiled = (await serialize(target.parsed.content, { mdxOptions })) as MDXRemoteSerializeResult<
     Record<string, unknown>,
     PostFrontmatter
   >
