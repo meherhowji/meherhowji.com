@@ -7,6 +7,7 @@
 
 :root {
   cursor: default;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);

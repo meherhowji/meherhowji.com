@@ -5,7 +5,9 @@ import AppShell from '@/components/app-shell'
 import '@/styles/globals.scss'
 import styles from '@/styles/page-css/layout.module.scss'
 
-const inter = Inter({ subsets: ['latin'], weight: ['300', '500', '700', '900'], variable: '--font-inter' })
+// Variable font: one file covering the full 100–900 weight axis (no missing-weight
+// bug, fewer requests than shipping separate static instances per weight).
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 // Favicons via the Metadata API (app/favicon.ico still covers the base .ico by convention).
 export const metadata: Metadata = {
