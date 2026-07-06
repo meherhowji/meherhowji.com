@@ -1,7 +1,9 @@
-@use 'sass:meta';
 @use '@/styles/mixins/mixins.scss';
 @import './normalise.css';
-@include meta.load-css('theme/theme-variables.scss');
+// Use @import (not meta.load-css) so Turbopack tracks these partials and
+// hot-reloads edits to them. @import preserves cascade order (overrides last);
+// @use can't, since it hoists module CSS to the top.
+@import 'theme/theme-variables.scss';
 
 :root {
   cursor: default;
@@ -45,6 +47,6 @@ html {
   }
 }
 
-@include meta.load-css('theme/typography.scss');
-@include meta.load-css('theme/code-typography.scss');
-@include meta.load-css('utilities/overrides.scss');
+@import 'theme/typography.scss';
+@import 'theme/code-typography.scss';
+@import 'utilities/overrides.scss';
