@@ -48,6 +48,22 @@ export const getPostsMeta = cache((): PostMeta[] => {
   return all.map(({ fileName, parsed }) => enrichFrontmatter(fileName, parsed, allFilesRaw)).filter(meta => !meta.draft)
 })
 
+// Raw body + enriched frontmatter for the article page (rendered server-side via
+// next-mdx-remote/rsc, so no pre-serialization here).
+export const getArticle = cache(
+  async (slug: string): Promise<{ frontmatter: PostMeta; content: string } | null> => {
+    const all = readAllParsed()
+    const target = all.find(({ fileName }) => path.basename(fileName, path.extname(fileName)) === slug)
+    if (!target) return null
+
+    const allFilesRaw = all.map(({ raw }) => raw)
+    const frontmatter = enrichFrontmatter(target.fileName, target.parsed, allFilesRaw)
+    if (frontmatter.draft) return null
+
+    return { frontmatter, content: target.parsed.content }
+  },
+)
+
 // Serialize a single post's body (only the one being rendered pays this cost).
 export const getPostBySlug = cache(async (slug: string): Promise<MDXPost | null> => {
   const all = readAllParsed()

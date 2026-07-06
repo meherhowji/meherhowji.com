@@ -1,62 +1,53 @@
-import type { MDXComponents } from 'mdx/types'
-import Image from 'next/image'
-import Copy from '@/public/assets/icons/copy.svg'
-import Copied from '@/public/assets/icons/copied.svg'
+import type { ComponentProps, ReactNode } from 'react'
+import CopyButton from '@/components/copy-button'
+import ExternalLinkIcon from '@/public/assets/icons/external-link-inline.svg'
+import { slugify } from '@/lib/utils/mdxUtils'
 
-// Component Modifiers
-function H2({ children }) {
-  return (
-    <h2 id={`${slugify(children)}`} className="anchor-heading">
-      {children}
-    </h2>
-  )
+function heading(Tag: 'h2' | 'h3') {
+  return function Heading({ children, ...props }: ComponentProps<typeof Tag>) {
+    return (
+      <Tag id={slugify(String(children))} className="anchor-heading" {...props}>
+        {children}
+      </Tag>
+    )
+  }
 }
 
-function Anchor({ children, ...props }) {
+function Anchor({ children, href = '', ...props }: ComponentProps<'a'>) {
+  const isExternal = /^https?:\/\//.test(href)
+  if (!isExternal) {
+    return (
+      <a href={href} className="anchor-markdown" {...props}>
+        {children}
+      </a>
+    )
+  }
   return (
-    <a {...props} className="anchor-markdown">
+    <a href={href} className="anchor-markdown external-link" target="_blank" rel="noopener noreferrer" {...props}>
       {children}
+      <ExternalLinkIcon className="external-link-icon" aria-hidden="true" />
     </a>
   )
 }
 
-function Pre({ children, raw, asdf, ...props }) {
+type PreProps = ComponentProps<'pre'> & { 'data-raw'?: string; 'data-title'?: string }
+
+function Pre({ children, ...props }: PreProps) {
+  const { 'data-raw': raw, 'data-title': title, ...rest } = props
   return (
-    <pre {...props}>
-      <CopyButton text={raw} />
-      {children}
-    </pre>
+    <div className="code-block">
+      {title && <div className="code-title">{title}</div>}
+      <div className="code-body">
+        <CopyButton text={raw ?? ''} />
+        <pre {...rest}>{children}</pre>
+      </div>
+    </div>
   )
 }
 
-function CopyButton({ text }) {
-  const [isCopied, setIsCopied] = useState(false)
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(text)
-    setIsCopied(true)
-
-    setTimeout(() => {
-      setIsCopied(false)
-    }, 1200)
-  }
-
-  return (
-    <button disabled={isCopied} onClick={copy} className={'copy-to-clipboard'}>
-      {isCopied ? (
-        <Image src={Copied} width="13" height="13" alt="Code copied" />
-      ) : (
-        <Image src={Copy} width="13" height="13" alt="Copy code" />
-      )}
-    </button>
-  )
-}
-
-export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return {
-    h2: H2,
-    a: Anchor,
-    pre: Pre,
-		...components
-  }
+export const mdxComponents: Record<string, (props: { children?: ReactNode }) => ReactNode> = {
+  h2: heading('h2'),
+  h3: heading('h3'),
+  a: Anchor,
+  pre: Pre,
 }
