@@ -1,5 +1,7 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
+export type TocHeading = { level: number; text: string; key: string }
+
 export type PostFrontmatter = {
   author: string
   coverCredit?: string
@@ -13,7 +15,7 @@ export type PostFrontmatter = {
   slug: string
   tags: string
   title: string
-  toc: Object[]
+  toc: TocHeading[]
   backlinks: { title: string; slug: string }[]
 }
 

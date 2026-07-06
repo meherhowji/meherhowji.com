@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote'
 import matter, { GrayMatterFile } from 'gray-matter'
 import { PostFrontmatter, PostMeta, MDXPost } from '@/db/markdown.d'
-import { getBacklinks, getHeadings, calculateReadingTime } from '@/lib/utils/mdxUtils'
+import { getBacklinks, getHeadings, calculateReadingTime, tagOrder } from '@/lib/utils/mdxUtils'
 import { mdxOptions } from '@/db/mdx-options'
 
 // Constants
@@ -46,6 +46,26 @@ export const getPostsMeta = cache((): PostMeta[] => {
   const all = readAllParsed()
   const allFilesRaw = all.map(({ raw }) => raw)
   return all.map(({ fileName, parsed }) => enrichFrontmatter(fileName, parsed, allFilesRaw)).filter(meta => !meta.draft)
+})
+
+// Published posts flattened in reading order: grouped by tag (tagOrder), each group
+// sorted by `order`. Used for prev/next article navigation.
+const getOrderedPosts = cache((): PostMeta[] =>
+  tagOrder.flatMap(tag =>
+    getPostsMeta()
+      .filter(post => post.tags.split(',')[0].trim() === tag)
+      .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity)),
+  ),
+)
+
+export const getPrevNext = cache((slug: string): { prev: PostMeta | null; next: PostMeta | null } => {
+  const ordered = getOrderedPosts()
+  const i = ordered.findIndex(post => post.slug === slug)
+  if (i === -1) return { prev: null, next: null }
+  return {
+    prev: i > 0 ? ordered[i - 1] : null,
+    next: i < ordered.length - 1 ? ordered[i + 1] : null,
+  }
 })
 
 // Raw body + enriched frontmatter for the article page (rendered server-side via

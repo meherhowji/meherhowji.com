@@ -1,124 +1,96 @@
-$tocWidth: 148px;
-
-.indicator {
-  position: absolute;
-  display: flex;
-  transform: translateY(0px);
-  top: 0px;
-  height: 100vh;
+.toc {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  // sit in the left gutter, just left of the ~720px centred prose column
+  left: calc((100vw - 720px) / 2 - 184px);
   z-index: 3;
-  opacity: 1;
-  visibility: visible;
-  align-items: flex-start;
-  transition:
-    opacity 1s ease-in-out,
-    visibility 1s linear 0s;
 
-  .topArrow {
-    position: absolute;
-    top: -26px;
-    left: -4px;
-    cursor: pointer;
+  @media (max-width: 1120px) {
+    display: none;
   }
+}
 
-  .disappear {
-    opacity: 0 !important;
-  }
+.toTop {
+  position: absolute;
+  top: -26px;
+  left: -4px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--primary);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 
-  &.absoluteBottom {
-    top: unset !important;
-    bottom: 45px;
-    position: absolute !important;
-    align-items: flex-end;
-  }
-
-  &.fixed {
-    position: fixed !important;
-    -moz-box-align: center;
-    align-items: center;
+  &:hover {
+    opacity: 1;
   }
 }
 
 .content {
   position: relative;
+}
 
-  .indicatorWrapper {
-    display: flex;
-    -moz-box-pack: justify;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 1px;
-    height: calc(-40px + 88vh);
-    max-height: 440px;
-    outline: currentcolor none medium;
-    user-select: none;
-    background-color: rgba(255, 255, 255, 0.3);
-    position: relative;
+// Vertical track (the mini scroll length of the article)…
+.indicatorWrapper {
+  position: relative;
+  width: 1px;
+  height: calc(88vh - 40px);
+  max-height: 440px;
+  background-color: rgba(127, 127, 127, 0.3);
+}
 
-    .indicatorOverlay {
-      position: absolute;
-      height: 0%;
-      width: 1px;
-      background-color: #fff;
-      left: 0;
-    }
+// …and the fill that grows with reading progress.
+.indicatorOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 0%;
+  background-color: var(--primary);
+  transition: height 0.15s var(--ease-out-quad);
+}
+
+// Headings distributed along the full height of the track.
+.headingList {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  height: 100%;
+  width: 160px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.headingItem {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  a {
+    display: block;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
   }
 
-  .headingList {
-    width: $tocWidth;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    transition: opacity 0.5s ease;
-
-    .headingItem {
-      position: relative;
-      align-items: center;
-      display: flex;
-      flex: 1 1 0%;
-      padding-bottom: 5px;
-      outline: currentcolor none medium;
-      user-select: none;
-      transition: opacity 0.5s ease;
-      opacity: 0.5;
-
-      &:hover {
-        opacity: 1;
-      }
-
-      h6,
-      h5 {
-        -moz-box-align: center;
-        align-items: center;
-        bottom: 0px;
-        color: rgb(255, 255, 255);
-        cursor: pointer;
-        display: flex;
-        font-size: 12px;
-        opacity: 0.4;
-        padding-left: 18px;
-        transition: opacity 1s ease-in-out;
-        overflow: hidden;
-
-        .textWrapper {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        a {
-          font-weight: normal;
-          text-decoration: none;
-          color: white;
-        }
-      }
-
-      h6 {
-        font-size: 10px !important;
-        padding-left: 24px !important;
-      }
-    }
+  &:hover a {
+    opacity: 0.85;
   }
+}
+
+.active a {
+  opacity: 1;
+  font-weight: 600;
 }
