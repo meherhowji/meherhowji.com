@@ -7,7 +7,9 @@
   display: inline;
 }
 
-code {
+// Inline code only — `:not(pre) > code` excludes block code inside shiki <pre>,
+// which manages its own colours (otherwise this bg paints over the code block).
+:not(pre) > code {
   background-color: #0e0e1f;
   color: rgb(255, 207, 116);
   font-size: 0.875em;

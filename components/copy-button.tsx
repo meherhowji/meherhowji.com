@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
 import Copy from '@/public/assets/icons/copy.svg'
 import Copied from '@/public/assets/icons/copied.svg'
 
@@ -16,11 +15,7 @@ export default function CopyButton({ text }: { text: string }) {
 
   return (
     <button disabled={isCopied} onClick={copy} className="copy-to-clipboard" aria-label="Copy code">
-      {isCopied ? (
-        <Image src={Copied} width="13" height="13" alt="Code copied" />
-      ) : (
-        <Image src={Copy} width="13" height="13" alt="Copy code" />
-      )}
+      {isCopied ? <Copied width={14} height={14} /> : <Copy width={14} height={14} />}
     </button>
   )
 }
