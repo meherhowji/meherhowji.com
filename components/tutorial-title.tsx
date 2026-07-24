@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState, useEffect, RefObject } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import css from '@/components/component-css/tutorial-list.module.scss'
 
@@ -12,7 +12,7 @@ interface TutorialTitleProps {
 }
 
 const TutorialTitle: React.FC<TutorialTitleProps> = ({ title, excerpt, slug, date, readingTime }) => {
-  const elem: RefObject<HTMLSpanElement> = useRef(null)
+  const elem = useRef<HTMLSpanElement>(null)
   const [isTitleMultiLine, setIsTitleMultiLine] = useState(false)
 
   useEffect(() => {

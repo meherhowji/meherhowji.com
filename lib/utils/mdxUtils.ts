@@ -15,7 +15,7 @@ function getBacklinks(contentList: string[], slug: string, title: string): { tit
     .filter((backlink): backlink is { title: string; slug: string } => backlink !== null) // Remove nulls
 }
 
-function getHeadings(post) {
+function getHeadings(post: string) {
   const lines = post.split('\n')
   const headings = []
   let insideCodeBlock = false
@@ -39,15 +39,7 @@ function getHeadings(post) {
   return headings
 }
 
-function finalCopy(post) {
-  if (process.env.NODE_ENV === 'development') {
-    return post
-  } else {
-    return post && !JSON.parse(post.draft)
-  }
-}
-
-function slugify(str) {
+function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
@@ -58,13 +50,6 @@ function slugify(str) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 
-function finalDraft(post) {
-  return process.env.NODE_ENV === 'development' ? true : post && !JSON.parse(post.draft).draft
-}
-// interface Post {
-//   draft: string // Assuming draft is a JSON-encoded string, e.g., '{"draft":true}' or '{"draft":false}'
-//   [key: string]: any // Other properties can be dynamic
-// }
 const tagOrder = ['javascript', 'blog', 'cloud', 'nextjs']
 
-export { getBacklinks, finalCopy, getHeadings, slugify, finalDraft, tagOrder, calculateReadingTime }
+export { getBacklinks, getHeadings, slugify, tagOrder, calculateReadingTime }
