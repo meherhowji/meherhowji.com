@@ -98,12 +98,6 @@ const SocialBar: React.FC<SocialBarProps> = ({ size }) => {
 // TODO: turn this into a terrain generator
 const SvgWave: React.FC<SvgWaveProps> = ({ parentAttr }) => {
   const [perlinLine, setPerlinLine] = useState<string>('')
-
-  useEffect(() => {
-    setPerlinLine(get1DPerlinNoise(parentAttr.height))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   function rand(): number {
     const M = 4294967296
     const A = 1664525
@@ -151,6 +145,15 @@ const SvgWave: React.FC<SvgWaveProps> = ({ parentAttr }) => {
     path = 'M0,100' + reset + `L${w},${parentHeight}L0,${parentHeight}L0,100Z`
     return path
   }
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setPerlinLine(get1DPerlinNoise(parentAttr.height))
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [parentAttr.height])
 
   return (
     <div
