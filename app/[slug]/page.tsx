@@ -16,6 +16,7 @@ export default async function Page({ params }: Params) {
   // A slug that matches a tag renders a filtered list (e.g. /javascript).
   if (tagOrder.includes(slug)) {
     const posts = (await getBlogPosts()).filter((post: MDXPost) => post.frontmatter.tags.split(',').includes(slug))
+    if (!posts.length) return notFound() // a tag with no posts isn't a real page
     return <SlugListPage posts={posts} />
   }
 
@@ -27,8 +28,12 @@ export default async function Page({ params }: Params) {
 // Static pages for every published post plus one page per tag.
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 export async function generateStaticParams() {
-  const posts = getPostsMeta().map(post => ({ slug: post.slug }))
-  const tags = tagOrder.map(tag => ({ slug: tag }))
+  const meta = getPostsMeta()
+  const posts = meta.map(post => ({ slug: post.slug }))
+  // Only pre-render tag pages that actually have posts; empty tags 404.
+  const tags = tagOrder
+    .filter(tag => meta.some(post => post.tags.split(',').includes(tag)))
+    .map(tag => ({ slug: tag }))
   return [...posts, ...tags]
 }
 
